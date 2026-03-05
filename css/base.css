@@ -1,0 +1,110 @@
+/* ============================================================
+base.css — Global foundation (Kathy brand)
+What this file does:
+- Defines design tokens (colors + fonts)
+- Applies safe global defaults (reset-ish)
+- Sets typography defaults (Inter + IBM Plex Serif)
+- DOES NOT define page layout (header/hero/cards grids belong elsewhere)
+
+IMPORTANT:
+- .container is defined ONLY in layout.css (single source of truth)
+- Scrolling is allowed by default; landing page no-scroll is enforced in layout.css
+============================================================ */
+
+/* ============================================================
+   # ---- Design tokens (colors + typography) ----
+============================================================ */
+
+:root {
+  /* ---- Brand colors (from kathyColorList) ---- */
+  --k-ink: #2c333e; /* AnchorInk */
+  --k-blue-1: #34568b; /* ClassicBlue */
+  --k-blue-2: #6889c0; /* Provence */
+  --k-blue-3: #b3cde0; /* BabyBlue */
+  --k-muted: #7c8488; /* Monument */
+  --k-stucco: #a5968c; /* Stucco (rarely used) */
+  --k-bg: #f7f8fa; /* OffWhite */
+  --k-border: #e5e7eb; /* LightGrey */
+  --k-peach: #f5b9a0; /* PeachQuartz (sparingly) */
+  --k-corn: #f2e0b2; /* Cornhusk (sparingly) */
+
+  /* ---- Header token ---- */
+  --k-header-bg: #000000; /* Pure Black */
+
+  /* ---- Typography (Serif for structure, Sans for data) ---- */
+  --font-sans:
+    "Inter", system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial,
+    sans-serif;
+  --font-serif: "IBM Plex Serif", Georgia, "Times New Roman", Times, serif;
+
+  /* ---- Base type scale ---- */
+  --text-base: 16px;
+  --line-base: 1.5;
+
+  /* ---- Common radii ---- */
+  --radius-sm: 8px;
+  --radius-md: 12px;
+
+  /* ---- Focus ring ---- */
+  --focus-ring: 0 0 0 3px rgba(104, 137, 192, 0.35); /* Provence @ 35% */
+}
+
+/* ============================================================
+   Global defaults
+============================================================ */
+
+html {
+  height: 100%;
+  font-size: var(--text-base);
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+
+  /* Default behavior for the whole site:
+     - allow normal vertical scrolling
+     - prevent horizontal overflow */
+  overflow-x: hidden;
+  overflow-y: auto;
+
+  font-family: var(--font-sans);
+  color: var(--k-ink);
+  background-color: var(--k-bg);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Structural typography */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-serif);
+  font-weight: 600;
+  margin: 0;
+}
+
+p {
+  margin: 0;
+}
+
+ul,
+ol {
+  margin: 0;
+  padding: 0;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
