@@ -6,24 +6,28 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>About | Kathy Matos Linares</title>
 
-    <!-- Shared site CSS -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=IBM+Plex+Serif:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+
     <link rel="stylesheet" href="css/base.css" />
     <link rel="stylesheet" href="css/layout.css" />
+    <link rel="stylesheet" href="css/components/architecture.css" />
     <link rel="stylesheet" href="css/pages.css" />
     <link rel="stylesheet" href="css/responsive.css" />
-
-    <!-- Components -->
+    <link rel="stylesheet" href="css/components/ui.css" />
     <link rel="stylesheet" href="css/components/header.css" />
     <link rel="stylesheet" href="css/components/hero.css" />
+    <link rel="stylesheet" href="css/components/project.css" />
     <link rel="stylesheet" href="css/components/timeline.css" />
     <link rel="stylesheet" href="css/components/footer.css" />
-
-    <!-- Page-specific -->
     <link rel="stylesheet" href="css/about.css" />
   </head>
 
   <body class="page-about">
-    <!-- Header (shared across site; do not modify header.css) -->
     <header class="site-header" role="banner">
       <nav class="container header-inner" aria-label="Primary Navigation">
         <div class="brand">
@@ -32,15 +36,12 @@
             <span class="brand-subtitle">Data Engineering &amp; Analytics</span>
           </a>
         </div>
-
         <ul class="navlinks">
           <li><a href="index.html">Home</a></li>
           <li><a href="projects.html">Projects</a></li>
           <li><a href="about.html" aria-current="page">About</a></li>
           <li><a href="contact.html">Contact</a></li>
-
           <li class="nav-divider" aria-hidden="true"></li>
-
           <li>
             <a class="navlink--resume" href="resume.html"
               >Engineering Profile</a
@@ -51,107 +52,135 @@
     </header>
 
     <main>
-      <!-- HERO (compact, no right side) -->
-      <section class="hero hero-dark" aria-labelledby="about-hero-title">
+      <!-- ============================================================
+         HERO
+         Left: headline + subtitle with open loop
+         Right: problem statement pull quote (Option A)
+         No CTA — nav handles navigation
+         Hero height inherits from hero.css — no override
+      ============================================================ -->
+      <section class="hero" aria-labelledby="hero-title">
         <div class="container hero-inner">
-          <div class="hero-left">
-            <h1 id="about-hero-title">
-              Data Engineering is Software Engineering
+          <div class="hero-text">
+            <h1 id="hero-title" class="hero-title">
+              19 years building decision systems inside institutional finance.
             </h1>
-
-            <p class="hero-subtext">
-              I approach data problems with an engineer's mindset. It's not just
-              about moving data from A to B; it's about reliability,
-              observability, and scalability.
+            <p class="hero-subtitle">
+              Most firms have the data. Nobody built the system that connects it
+              to decisions. That gap is what I spent 19 years working inside —
+              and what I now build systems to close.
             </p>
-
-            <p class="hero-subtext">
-              Whether it's setting up CI/CD pipelines for data models, enforcing
-              strict schemas, or optimizing query performance, I ensure the
-              foundation is solid so the insights are trustworthy.
+            <p class="hero-specialization">
+              Here's what that looks like applied to modern data infrastructure.
             </p>
+          </div>
 
-            <div class="hero-actions">
-              <a class="btn btn-primary" href="contact.html">
-                Let's discuss your data infrastructure
-              </a>
-            </div>
+          <!-- Right column: decision infrastructure SVG -->
+          <div class="hero-visual" aria-label="Decision infrastructure diagram">
+            <img
+              class="hero-logo"
+              src="assets/images/decision-infrastructure.png"
+              alt="Signal travels from data through infrastructure to reach the decision — no friction, right place, right time."
+            />
           </div>
         </div>
       </section>
 
-      <!-- TECHNICAL PHILOSOPHY + CORE COMPETENCIES -->
+      <!-- ============================================================
+         WHAT I ACTUALLY DO
+         Positioning statement + stats + who I work with + CTA
+         CTA lives HERE — not at the bottom of the timeline
+      ============================================================ -->
       <section
         class="about-section about-philosophy"
-        aria-labelledby="tech-philosophy-title"
+        aria-labelledby="positioning-title"
       >
         <div class="container about-grid">
-          <!-- Left -->
           <div class="about-col-left">
-            <h2 id="tech-philosophy-title">Technical Philosophy</h2>
+            <h2 id="positioning-title">What I actually do</h2>
 
             <p class="about-lede">
-              Data engineering is not just about moving bytes; it's about
-              ensuring reliability, scalability, and actionability. My approach
-              focuses on robust architecture, automated testing, and clear
-              observability to transform raw chaos into structured insight.
+              Most organizations don't have a data problem. They have a decision
+              infrastructure problem. The data exists. The relationships between
+              it are knowable. But nobody built the system that connects them —
+              because doing that requires someone who understands both what
+              questions need to be asked and how to engineer the pipeline that
+              answers them automatically.
+            </p>
+
+            <p class="about-lede">
+              That is the gap I spent 19 years working inside. And it is the gap
+              I now build systems to close.
             </p>
 
             <div class="about-stats" role="list" aria-label="Key metrics">
               <div class="stat" role="listitem">
-                <div class="stat-value">5+</div>
-                <div class="stat-label">Years Experience</div>
+                <div class="stat-value">19</div>
+                <div class="stat-label">Years in Finance Data</div>
               </div>
-
               <div class="stat" role="listitem">
-                <div class="stat-value">20+</div>
-                <div class="stat-label">Pipelines Built</div>
+                <div class="stat-value">6+</div>
+                <div class="stat-label">Production Systems</div>
               </div>
-
               <div class="stat" role="listitem">
-                <div class="stat-value">100%</div>
-                <div class="stat-label">Automation</div>
+                <div class="stat-value">2</div>
+                <div class="stat-label">Domains Mastered</div>
               </div>
+            </div>
+
+            <!-- CTA immediately after stats — primary conversion point -->
+            <div class="about-primary-cta">
+              <a class="btn btn-about-primary" href="contact.html">
+                Let's work together →
+              </a>
             </div>
           </div>
 
-          <!-- Right -->
           <div class="about-col-right">
             <div
               class="card competencies"
-              aria-labelledby="core-competencies-title"
+              aria-labelledby="who-this-is-for-title"
             >
-              <h3 id="core-competencies-title">Core Competencies</h3>
-
+              <h3 id="who-this-is-for-title">Who I work with</h3>
               <div class="competency-grid">
                 <div class="competency">
-                  <span class="competency-icon" aria-hidden="true">🐍</span>
-                  <span class="competency-text">Python &amp; SQL</span>
+                  <span class="competency-icon" aria-hidden="true">📊</span>
+                  <span class="competency-text"
+                    >Asset managers modernizing data infrastructure</span
+                  >
                 </div>
-
                 <div class="competency">
-                  <span class="competency-icon" aria-hidden="true">🐳</span>
-                  <span class="competency-text">Docker &amp; K8s</span>
+                  <span class="competency-icon" aria-hidden="true">🏦</span>
+                  <span class="competency-text"
+                    >Finance firms replacing analyst workflows with
+                    systems</span
+                  >
                 </div>
-
                 <div class="competency">
-                  <span class="competency-icon" aria-hidden="true">☁️</span>
-                  <span class="competency-text">AWS / Azure</span>
+                  <span class="competency-icon" aria-hidden="true">⚙️</span>
+                  <span class="competency-text"
+                    >Data teams building decision-grade pipelines</span
+                  >
                 </div>
-
                 <div class="competency">
-                  <span class="competency-icon" aria-hidden="true">🗄️</span>
-                  <span class="competency-text">PostgreSQL / NoSQL</span>
+                  <span class="competency-icon" aria-hidden="true">🔗</span>
+                  <span class="competency-text"
+                    >Fintechs serving institutional investment clients</span
+                  >
                 </div>
-
                 <div class="competency">
-                  <span class="competency-icon" aria-hidden="true">⌨️</span>
-                  <span class="competency-text">Bash &amp; Linux</span>
+                  <span class="competency-icon" aria-hidden="true">🛡️</span>
+                  <span class="competency-text"
+                    >Pension funds &amp; family offices with fragmented
+                    data</span
+                  >
                 </div>
-
                 <div class="competency">
-                  <span class="competency-icon" aria-hidden="true">🔁</span>
-                  <span class="competency-text">CI/CD (GitHub Actions)</span>
+                  <span class="competency-icon" aria-hidden="true">🧠</span>
+                  <span class="competency-text"
+                    >Engineering teams that need domain-fluent
+                    collaborators</span
+                  >
                 </div>
               </div>
             </div>
@@ -159,217 +188,277 @@
         </div>
       </section>
 
-      <!-- PROFESSIONAL JOURNEY (timeline) — substituted with your real capability areas -->
+      <!-- ============================================================
+         HOW I BUILD IT — three stage workflow
+         Bridge between positioning and proof
+         Inserted between about-philosophy and about-journey
+      ============================================================ -->
+      <section
+        class="about-section about-workflow"
+        aria-labelledby="workflow-title"
+      >
+        <div class="container">
+          <div class="about-workflow-header">
+            <h2 id="workflow-title">How I build decision infrastructure</h2>
+            <p class="about-workflow-subtitle">
+              Three stages. Each one is an engineering problem. Most
+              organizations are missing all three.
+            </p>
+          </div>
+
+          <div class="about-workflow-grid" role="list">
+            <!-- Stage 01: Validate -->
+            <article class="workflow-card" role="listitem">
+              <div class="workflow-card-number">01</div>
+              <h3 class="workflow-card-title">Validate</h3>
+              <p class="workflow-card-question">Is the data trustworthy?</p>
+              <p class="workflow-card-desc">
+                Schema enforcement, data contracts, automated quality checks. In
+                institutional finance, this is non-negotiable — bad data costs
+                real money. Most data teams treat it as optional.
+              </p>
+              <div class="workflow-card-tags">
+                <span class="workflow-tag">Data contracts</span>
+                <span class="workflow-tag">Schema enforcement</span>
+                <span class="workflow-tag">Quality checks</span>
+              </div>
+            </article>
+
+            <!-- Stage 02: Transform — highlighted as focal point -->
+            <article
+              class="workflow-card workflow-card--featured"
+              role="listitem"
+            >
+              <div class="workflow-card-number workflow-card-number--featured">
+                02
+              </div>
+              <h3 class="workflow-card-title">Transform</h3>
+              <p class="workflow-card-question">
+                Does it answer the right question?
+              </p>
+              <p class="workflow-card-desc">
+                Business logic encoded in the pipeline, not rebuilt manually
+                every time. The model that knows what a portfolio manager
+                actually needs to act — not just what the data contains.
+              </p>
+              <div class="workflow-card-tags">
+                <span class="workflow-tag">Business logic</span>
+                <span class="workflow-tag">Decision modeling</span>
+                <span class="workflow-tag">Signal extraction</span>
+              </div>
+            </article>
+
+            <!-- Stage 03: Deliver -->
+            <article class="workflow-card" role="listitem">
+              <div class="workflow-card-number">03</div>
+              <h3 class="workflow-card-title">Deliver</h3>
+              <p class="workflow-card-question">
+                Does it arrive where decisions happen?
+              </p>
+              <p class="workflow-card-desc">
+                Signal reaches the decision maker inside their workflow — not in
+                a separate dashboard they have to remember to open. Adoption
+                lives or dies at this stage.
+              </p>
+              <div class="workflow-card-tags">
+                <span class="workflow-tag">Decision interfaces</span>
+                <span class="workflow-tag">Workflow integration</span>
+                <span class="workflow-tag">Adoption</span>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============================================================
+         PROFESSIONAL JOURNEY
+         Bridge line creates scroll motivation before timeline
+         Timeline is proof — not the conversion path
+      ============================================================ -->
       <section
         class="about-section about-journey"
         aria-labelledby="professional-journey-title"
       >
         <div class="container">
           <div class="section-header">
-            <h2 id="professional-journey-title">Professional Journey</h2>
-            <a class="section-link" href="resume.html">View Full Resume →</a>
+            <h2 id="professional-journey-title">Professional journey</h2>
+            <a class="section-link" href="resume.html"
+              >Full engineering profile →</a
+            >
           </div>
 
+          <!-- Bridge: tells viewer what the timeline proves -->
+          <p class="about-journey-bridge">
+            Here's the work behind the positioning.
+          </p>
+
           <div class="timeline" aria-label="Professional capabilities timeline">
-            <!-- LEFT -->
             <article class="timeline-item timeline-item--left">
               <div class="timeline-card">
                 <h3 class="timeline-role">
-                  Quantitative Research &amp; Portfolio Analytics
+                  Quantitative Research &amp; Factor Development — William Blair
                 </h3>
                 <p class="timeline-meta">
-                  Investment research → factor design → decision-ready outputs
-                </p>
-
-                <p class="timeline-desc">
-                  • Led end-to-end quantitative research initiatives,
-                  translating investment questions into data sourcing, factor
-                  development, testing, and production-ready analytics that
-                  informed stock selection, sector allocation, and regional
-                  strategy decisions.
+                  19 years · Investment question → signal → production analytics
                 </p>
                 <p class="timeline-desc">
-                  • Developed quantitative factors for multifactor models and
-                  evaluated signal performance, persistence, correlations, and
-                  regime behavior to support robust model construction.
+                  Led end-to-end quantitative research at one of Chicago's
+                  leading investment managers — translating investment questions
+                  into data sourcing strategies, factor development, backtesting
+                  frameworks, and production-ready analytics used in daily
+                  portfolio decisions.
                 </p>
                 <p class="timeline-desc">
-                  • Synthesized model output into repeatable sector and regional
-                  strategy frameworks, integrating macroeconomic, industry,
-                  thematic, and ESG inputs.
+                  In this environment, bad data costs real money. Every system I
+                  built was designed to be auditable, reliable, and
+                  decision-ready — not just functional.
                 </p>
-
-                <div class="timeline-tags" aria-label="Themes">
+                <div class="timeline-tags">
                   <span class="tag">Factor Research</span>
                   <span class="tag">Backtesting</span>
-                  <span class="tag">Regimes</span>
+                  <span class="tag">Macro Regimes</span>
+                  <span class="tag">William Blair</span>
                 </div>
               </div>
             </article>
 
-            <!-- RIGHT -->
             <article class="timeline-item timeline-item--right">
               <div class="timeline-card">
                 <h3 class="timeline-role">
-                  Data Strategy, Governance &amp; Infrastructure
+                  Data Infrastructure &amp; Pipeline Engineering
                 </h3>
                 <p class="timeline-meta">
-                  First-mile data → validation → production reliability
-                </p>
-
-                <p class="timeline-desc">
-                  • Led first-mile data discovery, validation, and onboarding
-                  for internal / third-party datasets, ensuring relevance,
-                  integrity, and readiness for quantitative research.
+                  First-mile data → validation → governance → production
+                  reliability
                 </p>
                 <p class="timeline-desc">
-                  • Designed and maintained production pipelines with automated
-                  quality checks, alerting, and governance practices, improving
-                  reliability and reducing operational risk in day-to-day
-                  investment workflows.
+                  Designed and maintained production pipelines with automated
+                  quality checks, alerting, versioning, and full audit trails —
+                  supporting daily investment workflows in a regulated
+                  environment where data integrity is non-negotiable.
                 </p>
                 <p class="timeline-desc">
-                  • Established standards for validation, documentation,
-                  versioning, and lifecycle management to support auditable and
-                  scalable analytics.
+                  Established data contracts and lifecycle management standards
+                  that made analytical outputs auditable, reproducible, and
+                  scalable across the research team.
                 </p>
-
-                <div class="timeline-tags" aria-label="Themes">
-                  <span class="tag">Data Quality</span>
+                <div class="timeline-tags">
+                  <span class="tag">Data Contracts</span>
+                  <span class="tag">Validation</span>
                   <span class="tag">Governance</span>
                   <span class="tag">Pipelines</span>
                 </div>
               </div>
             </article>
 
-            <!-- LEFT -->
             <article class="timeline-item timeline-item--left">
               <div class="timeline-card">
                 <h3 class="timeline-role">
-                  Visualization, Reporting &amp; Decision Intelligence
+                  Decision Systems &amp; Analytics Infrastructure
                 </h3>
                 <p class="timeline-meta">
-                  Complex analytics → clear visuals → portfolio decisions
-                </p>
-
-                <p class="timeline-desc">
-                  • Designed advanced visualizations and dashboards to translate
-                  complex quantitative research into clear, decision-ready
-                  insights for portfolio managers and research leadership.
+                  Complex analytics → decision-ready interfaces → PM workflow
                 </p>
                 <p class="timeline-desc">
-                  • Standardized charting and table frameworks to create
-                  consistent visual language across investment reporting and
-                  research outputs.
-                </p>
-                <p class="timeline-desc">
-                  • Communicated analytical findings through visual narratives
-                  and executive summaries supporting investment reviews and
+                  Designed dashboards and reporting frameworks that translated
+                  quantitative research into clear, actionable outputs for
+                  portfolio managers — used in daily investment reviews and
                   strategy discussions.
                 </p>
-
-                <div class="timeline-tags" aria-label="Themes">
-                  <span class="tag">Dashboards</span>
-                  <span class="tag">Reporting Systems</span>
-                  <span class="tag">Executive Narrative</span>
-                </div>
-              </div>
-            </article>
-
-            <!-- RIGHT -->
-            <article class="timeline-item timeline-item--right">
-              <div class="timeline-card">
-                <h3 class="timeline-role">
-                  Application Development &amp; Research Tooling
-                </h3>
-                <p class="timeline-meta">
-                  Interactive analysis tools that scale research workflows
-                </p>
-
                 <p class="timeline-desc">
-                  • Designed and built interactive Shiny applications enabling
-                  exploratory analysis of factor behavior, portfolio exposures,
-                  ESG signals, and strategy outcomes.
+                  The key distinction: these were not reporting tools. They were
+                  decision tools — designed around what a portfolio manager
+                  needed to know to act, not just what was available to show.
                 </p>
-                <p class="timeline-desc">
-                  • Developed and maintained internal R packages to standardize
-                  charting, table creation, and analytical workflows, increasing
-                  efficiency and reuse across research teams.
-                </p>
-                <p class="timeline-desc">
-                  • Partnered with engineering teams to evolve analytical
-                  platforms and deliver high-quality, user-facing research
-                  tools.
-                </p>
-
-                <div class="timeline-tags" aria-label="Themes">
+                <div class="timeline-tags">
+                  <span class="tag">Decision Infrastructure</span>
                   <span class="tag">Shiny Apps</span>
                   <span class="tag">R Packages</span>
-                  <span class="tag">Tooling</span>
+                  <span class="tag">PM Workflow</span>
                 </div>
               </div>
             </article>
 
-            <!-- LEFT -->
-            <article class="timeline-item timeline-item--left">
-              <div class="timeline-card">
-                <h3 class="timeline-role">ESG Data &amp; Vendor Evaluation</h3>
-                <p class="timeline-meta">
-                  Coverage + quality + signal relevance for model integration
-                </p>
-
-                <p class="timeline-desc">
-                  • Evaluated and onboarded ESG datasets by assessing vendor
-                  coverage, data quality, and signal relevance, supporting
-                  integration of ESG inputs into quantitative models.
-                </p>
-                <p class="timeline-desc">
-                  • Analyzed ESG signal behavior and interactions with
-                  traditional factors to inform model design and investment
-                  decision-making.
-                </p>
-                <p class="timeline-desc">
-                  • Collaborated on ESG-focused visualization design to clearly
-                  communicate ESG exposures, trends, and model implications.
-                </p>
-
-                <div class="timeline-tags" aria-label="Themes">
-                  <span class="tag">Vendor Review</span>
-                  <span class="tag">Signal Analysis</span>
-                  <span class="tag">ESG Integration</span>
-                </div>
-              </div>
-            </article>
-
-            <!-- RIGHT -->
             <article class="timeline-item timeline-item--right">
               <div class="timeline-card">
                 <h3 class="timeline-role">
-                  Training, Enablement &amp; Collaboration
+                  ESG Signal Evaluation &amp; Vendor Integration
                 </h3>
                 <p class="timeline-meta">
-                  Raise team capability + align analytics to workflow
+                  Coverage + quality + signal relevance → model integration
                 </p>
+                <p class="timeline-desc">
+                  Evaluated and onboarded ESG datasets — assessing vendor
+                  coverage, data quality, update frequency, and signal relevance
+                  before committing to production in quantitative models.
+                </p>
+                <p class="timeline-desc">
+                  This work required understanding both the domain problem —
+                  what ESG signal actually tells a portfolio manager — and the
+                  infrastructure problem — how to ingest, validate, and version
+                  a vendor dataset reliably.
+                </p>
+                <div class="timeline-tags">
+                  <span class="tag">Vendor Evaluation</span>
+                  <span class="tag">ESG Integration</span>
+                  <span class="tag">Signal Analysis</span>
+                </div>
+              </div>
+            </article>
 
-                <p class="timeline-desc">
-                  • Trained and onboarded new hires in quantitative models, R,
-                  Shiny, and internal research tools to accelerate ramp-up and
-                  promote consistent analytical standards.
+            <article class="timeline-item timeline-item--left">
+              <div class="timeline-card">
+                <h3 class="timeline-role">
+                  Data Engineering &amp; Full Stack Development — Coding Temple
+                </h3>
+                <p class="timeline-meta">
+                  2026 · In progress · Modern tooling on a production foundation
                 </p>
                 <p class="timeline-desc">
-                  • Collaborated with portfolio managers, analysts, data
-                  scientists, engineering, and senior leadership to align
-                  analytics with investment workflows and strategic goals.
+                  Formalizing 19 years of production data discipline with modern
+                  engineering tooling — Python, FastAPI, PostgreSQL, Docker,
+                  React, REST APIs, and cloud infrastructure.
                 </p>
                 <p class="timeline-desc">
-                  • Served as a trusted resource for best practices in
-                  quantitative research, data management, and analytics
-                  delivery.
+                  The transition is not from analyst to engineer. It is from
+                  engineer who built within one domain to engineer who can build
+                  across any domain that has the same underlying problem.
                 </p>
+                <div class="timeline-tags">
+                  <span class="tag">Python</span>
+                  <span class="tag">FastAPI</span>
+                  <span class="tag">Docker</span>
+                  <span class="tag">React</span>
+                  <span class="tag">Full Stack</span>
+                </div>
+              </div>
+            </article>
 
-                <div class="timeline-tags" aria-label="Themes">
+            <article class="timeline-item timeline-item--right">
+              <div class="timeline-card">
+                <h3 class="timeline-role">
+                  Team Enablement &amp; Cross-Functional Collaboration
+                </h3>
+                <p class="timeline-meta">
+                  Raise team capability · Align analytics to workflow · Build
+                  standards
+                </p>
+                <p class="timeline-desc">
+                  Collaborated with portfolio managers, data scientists,
+                  engineering teams, and senior leadership to align analytics
+                  with investment workflows — operating as the translation layer
+                  between what the business needed and what the data could
+                  provide.
+                </p>
+                <p class="timeline-desc">
+                  This is the core FDE skill — embedded in the business,
+                  understanding the decision, building the system that serves
+                  it. I did this for 19 years before the title existed.
+                </p>
+                <div class="timeline-tags">
                   <span class="tag">Enablement</span>
                   <span class="tag">Cross-Functional</span>
+                  <span class="tag">Domain Translation</span>
                   <span class="tag">Standards</span>
                 </div>
               </div>
@@ -377,11 +466,17 @@
           </div>
         </div>
       </section>
-
-      <!-- NOTE: "Let's talk" section intentionally removed to avoid duplicating footer contact -->
     </main>
 
-    <!-- Footer (shared; do not modify footer.css) -->
+    <!-- ============================================================
+     # ---- Footer (Required)
+     FIXED STRUCTURE:
+     footer.site-footer
+       > .container
+         > .footer-inner (flex row wrapper)
+           > .footer-left
+           > .footer-right
+     ============================================================ -->
     <footer class="site-footer">
       <div class="container">
         <div class="footer-inner">
@@ -401,10 +496,23 @@
               class="email-link"
               aria-label="Email Kathy"
             >
+              <svg
+                viewBox="0 0 24 24"
+                width="22"
+                height="22"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.8"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                aria-hidden="true"
+              >
+                <path d="M4 6h16v12H4z"></path>
+                <path d="M4 7l8 6 8-6"></path>
+              </svg>
               <span>kmatosli@yahoo.com</span>
             </a>
 
-            <!-- SVG icons (no "GitHub LinkedIn" text) -->
             <a
               href="https://github.com/kmatosli"
               target="_blank"
@@ -414,15 +522,24 @@
             >
               <svg
                 viewBox="0 0 24 24"
-                width="18"
-                height="18"
+                width="22"
+                height="22"
+                fill="currentColor"
                 aria-hidden="true"
-                focusable="false"
               >
                 <path
-                  fill="currentColor"
-                  d="M12 2a10 10 0 0 0-3.16 19.49c.5.09.68-.22.68-.48v-1.7c-2.77.6-3.35-1.34-3.35-1.34-.45-1.15-1.1-1.46-1.1-1.46-.9-.62.07-.61.07-.61 1 .07 1.52 1.03 1.52 1.03.89 1.53 2.34 1.09 2.91.83.09-.65.35-1.09.63-1.34-2.21-.25-4.54-1.11-4.54-4.95 0-1.09.39-1.99 1.03-2.69-.1-.25-.45-1.27.1-2.64 0 0 .84-.27 2.75 1.03A9.6 9.6 0 0 1 12 6.84c.85 0 1.7.11 2.5.33 1.91-1.3 2.75-1.03 2.75-1.03.55 1.37.2 2.39.1 2.64.64.7 1.03 1.6 1.03 2.69 0 3.85-2.34 4.7-4.57 4.95.36.31.68.93.68 1.88v2.78c0 .27.18.58.69.48A10 10 0 0 0 12 2z"
-                />
+                  d="M12 2C6.477 2 2 6.596 2 12.253c0 4.524 2.865 8.363 6.839 9.717
+              .5.094.682-.22.682-.485 0-.24-.008-.874-.013-1.714-2.781.62-3.369-1.372-3.369-1.372
+              -.454-1.18-1.11-1.494-1.11-1.494-.907-.636.069-.623.069-.623
+              1.003.072 1.53 1.055 1.53 1.055.893 1.564 2.344 1.113 2.915.85
+              .09-.664.35-1.113.636-1.37-2.221-.26-4.555-1.138-4.555-5.063
+              0-1.118.39-2.032 1.029-2.748-.104-.262-.446-1.316.098-2.742
+              0 0 .84-.275 2.75 1.05a9.19 9.19 0 0 1 2.504-.35c.85.004 1.706.12 2.504.35
+              1.91-1.325 2.748-1.05 2.748-1.05.545 1.426.203 2.48.1 2.742
+              .64.716 1.028 1.63 1.028 2.748 0 3.934-2.338 4.8-4.566 5.055
+              .36.322.681.955.681 1.927 0 1.39-.012 2.512-.012 2.854
+              0 .268.18.584.688.485A10.27 10.27 0 0 0 22 12.253C22 6.596 17.523 2 12 2z"
+                ></path>
               </svg>
             </a>
 
@@ -435,15 +552,20 @@
             >
               <svg
                 viewBox="0 0 24 24"
-                width="18"
-                height="18"
+                width="22"
+                height="22"
+                fill="currentColor"
                 aria-hidden="true"
-                focusable="false"
               >
                 <path
-                  fill="currentColor"
-                  d="M20.45 20.45h-3.55v-5.57c0-1.33-.03-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.95v5.66H9.36V9h3.41v1.56h.05c.47-.9 1.62-1.85 3.34-1.85 3.57 0 4.23 2.35 4.23 5.41v6.33zM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zM7.12 20.45H3.56V9h3.56v11.45zM22 2H2a2 2 0 0 0-2 2v20a2 2 0 0 0 2 2h20a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2z"
-                />
+                  d="M20.447 20.452H17.1v-5.569c0-1.328-.027-3.037-1.852-3.037
+              -1.853 0-2.136 1.445-2.136 2.939v5.667H9.655V9h3.214v1.561h.046
+              c.477-.9 1.637-1.85 3.37-1.85 3.401 0 4.167 2.37 4.167 5.455v6.286zM5.337 7.433
+              c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063
+              1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zM6.956 20.452H3.717V9h3.239v11.452zM22.225 0H1.771
+              C.792 0 0 .774 0 1.727v20.545C0 23.227.792 24 1.771 24h20.451
+              C23.2 24 24 23.227 24 22.273V1.727C24 .774 23.2 0 22.222 0h.003z"
+                ></path>
               </svg>
             </a>
           </div>

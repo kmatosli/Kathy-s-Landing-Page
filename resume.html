@@ -14,19 +14,15 @@
 
     <link rel="stylesheet" href="css/base.css" />
     <link rel="stylesheet" href="css/layout.css" />
-    <link rel="stylesheet" href="css/components.css" />
-    <link rel="stylesheet" href="css/resume.css" />
-
-    <!-- IMPORTANT: match index header/footer styling -->
     <link rel="stylesheet" href="css/components/header.css" />
     <link rel="stylesheet" href="css/components/footer.css" />
     <link rel="stylesheet" href="css/components/ui.css" />
-
     <link rel="stylesheet" href="css/pages.css" />
     <link rel="stylesheet" href="css/responsive.css" />
+    <link rel="stylesheet" href="css/resume.css" />
   </head>
 
-  <body>
+  <body class="page-resume">
     <header class="site-header" role="banner">
       <nav class="container header-inner" aria-label="Primary Navigation">
         <div class="brand">
@@ -35,15 +31,12 @@
             <span class="brand-subtitle">Data Engineering &amp; Analytics</span>
           </a>
         </div>
-
         <ul class="navlinks">
           <li><a href="index.html">Home</a></li>
           <li><a href="projects.html">Projects</a></li>
           <li><a href="about.html">About</a></li>
           <li><a href="contact.html">Contact</a></li>
-
           <li class="nav-divider" aria-hidden="true"></li>
-
           <li>
             <a class="navlink--resume" href="resume.html" aria-current="page"
               >Engineering Profile</a
@@ -54,19 +47,25 @@
     </header>
 
     <main class="resume-page">
-      <div class="container">
-        <section class="resume-hero" aria-label="Engineering Profile header">
+      <!-- ============================================================
+         HERO
+         Headline + lede + CV download
+         No employer names — positioning statement leads
+      ============================================================ -->
+      <section class="resume-hero" aria-label="Engineering Profile header">
+        <div class="container resume-hero-inner">
           <div class="resume-hero-left">
-            <p class="resume-kicker">Engineering Profile</p>
             <h1 class="resume-title">
-              Structured, production-minded systems — from ingestion to
-              decision.
+              19 years building the infrastructure layer — pipelines, platforms,
+              and decision systems that scale.
             </h1>
             <p class="resume-lede">
-              I solve messy data + workflow chaos → structured, automated
-              decision systems: scalable, auditable, and production-ready.
+              Most data engineers learn production discipline over time. I came
+              in with 19 years of it — built inside one of the most demanding
+              data environments in the world, where bad data costs real money.
+              Now applying that foundation to data engineering full time, with
+              modern tooling added on top.
             </p>
-
             <div class="resume-actions">
               <a
                 class="btn btn-primary"
@@ -74,73 +73,47 @@
                 download
                 >Download CV</a
               >
-              <a class="btn btn-secondary" href="projects.html">View Systems</a>
             </div>
           </div>
 
           <aside class="resume-hero-right" aria-label="System lifecycle">
-            <div class="arch-visual">
-              <div class="arch-visual-inner">
-                <span class="arch-chip">Ingestion</span
-                ><span class="arch-arrow">→</span>
-                <span class="arch-chip">Validation</span
-                ><span class="arch-arrow">→</span>
-                <span class="arch-chip">Storage</span
-                ><span class="arch-arrow">→</span>
-                <span class="arch-chip">Analytics</span
-                ><span class="arch-arrow">→</span>
-                <span class="arch-chip is-accent">Decision Interface</span
-                ><span class="arch-arrow">→</span>
-                <span class="arch-chip">Governance</span>
-              </div>
-              <p class="arch-caption">
-                How I think about engineering work: each step must be reliable
-                and reusable.
-              </p>
-            </div>
+            <img
+              class="resume-hero-img"
+              src="assets/images/Engineering%20Profile%20Logo.png"
+              alt="Data engineering stack: Governance, Ingestion, Validation, Storage, Analytics, Decision Interface — reliable layers, reusable systems, better decisions."
+            />
           </aside>
-        </section>
+        </div>
+      </section>
 
-        <section class="resume-meta" aria-label="Contact and links">
-          <div class="resume-meta-row">
-            <span class="meta-item">Chicago, IL</span>
-            <span class="meta-dot">•</span>
-            <a class="meta-link" href="mailto:kmatosli@yahoo.com"
-              >kmatosli@yahoo.com</a
-            >
-            <span class="meta-dot">•</span>
-            <span class="meta-item">312-259-1331</span>
-            <span class="meta-dot">•</span>
-            <a
-              class="meta-link"
-              href="https://www.linkedin.com/in/kathy-matos-070802/"
-              target="_blank"
-              rel="noreferrer"
-              >LinkedIn</a
-            >
-            <span class="meta-dot">•</span>
-            <a
-              class="meta-link"
-              href="https://github.com/kmatosli"
-              target="_blank"
-              rel="noreferrer"
-              >GitHub</a
-            >
-          </div>
-        </section>
-
-        <!-- The rest of your resume content stays as-is -->
+      <!-- ============================================================
+         CONTENT GRID
+         Why I'm different · Core strengths · Skills
+         Education · Certifications
+         No experience or selected systems — those live on About + Projects
+      ============================================================ -->
+      <div class="container resume-content">
         <section class="resume-grid" aria-label="Resume modules">
-          <!-- Summary -->
-          <article class="resume-card">
-            <h2 class="resume-h2">Summary</h2>
+          <!-- Why I'm different — wide card -->
+          <article class="resume-card resume-card--wide">
+            <h2 class="resume-h2">Why I'm different</h2>
             <p class="resume-p">
-              Quantitative research and analytics professional with deep
-              experience supporting investment decision-making in fast-moving,
-              data-dense environments. I translate complex, unstructured inputs
-              into decision-ready outputs through automation, visualization, and
-              disciplined workflow design — with attention to data quality,
-              governance, and operational reliability.
+              I spent 19 years building quantitative research infrastructure
+              inside institutional investment management — an environment where
+              data quality is non-negotiable and analytical systems run in
+              production every day. I didn't just analyze data. I built the
+              pipelines, dashboards, factor models, and R tooling that made
+              analysis possible at scale, with full audit trails and automated
+              quality checks.
+            </p>
+            <p class="resume-p" style="margin-top: 10px">
+              The stakes shaped how I think. In finance, a broken pipeline or a
+              stale dataset doesn't just slow things down — it changes decisions
+              that move real money. That environment gave me a production
+              mindset before I ever heard the term. I now bring that discipline
+              to data engineering full time, with modern tooling — Python,
+              FastAPI, PostgreSQL, Docker, React — added on top of a foundation
+              that most engineers spend years building.
             </p>
           </article>
 
@@ -149,18 +122,27 @@
             <h2 class="resume-h2">Core strengths</h2>
             <ul class="resume-bullets">
               <li>
-                Decision-first system design (repeatable, auditable workflows)
+                Decision-first system design — repeatable, auditable workflows
+                that serve the people making the call
               </li>
               <li>
                 Data pipelines: ingestion → normalization → validation → publish
               </li>
               <li>
-                Analytics tooling for PM/analyst workflows (dashboards +
-                reporting)
+                Analytics tooling for analyst and PM workflows — dashboards that
+                drive decisions, not just report on them
               </li>
               <li>
-                Clear communication: “what changed, why it matters, what to do
-                next”
+                High-stakes data environments — bad data has real consequences
+                and I design systems accordingly
+              </li>
+              <li>
+                Domain translation — bridging the gap between what the business
+                needs and what the data can provide
+              </li>
+              <li>
+                Clear communication: what changed, why it matters, what to do
+                next
               </li>
             </ul>
           </article>
@@ -168,246 +150,120 @@
           <!-- Skills -->
           <article class="resume-card">
             <h2 class="resume-h2">Skills</h2>
-
             <div class="skill-block">
               <p class="skill-label">Languages</p>
               <p class="skill-value">Python, R, SQL, JavaScript, HTML5, CSS3</p>
             </div>
-
             <div class="skill-block">
               <p class="skill-label">Data &amp; DB</p>
               <p class="skill-value">PostgreSQL, MySQL, MongoDB, BigQuery</p>
             </div>
-
             <div class="skill-block">
               <p class="skill-label">Frameworks</p>
-              <p class="skill-value">FastAPI/Flask, React, Shiny</p>
+              <p class="skill-value">FastAPI, Flask, React, Shiny</p>
             </div>
-
             <div class="skill-block">
-              <p class="skill-label">Viz</p>
-              <p class="skill-value">ggplot2, gt, Plotly, Matplotlib, Altair</p>
-            </div>
-
-            <div class="skill-block">
-              <p class="skill-label">Tools</p>
+              <p class="skill-label">Visualization</p>
               <p class="skill-value">
-                GitHub, REST APIs, Docker, Posit Workbench/Connect
+                ggplot2, gt, Plotly, Matplotlib, Altair, Quarto
               </p>
             </div>
-          </article>
-
-          <!-- Experience -->
-          <article class="resume-card resume-card--wide">
-            <h2 class="resume-h2">Experience</h2>
-
-            <div class="role">
-              <div class="role-head">
-                <h3 class="role-title">
-                  Quantitative Associate — William Blair
-                </h3>
-                <p class="role-dates">Jan 2007 – Jan 2026</p>
-              </div>
-
-              <ul class="resume-bullets">
-                <li>
-                  Led end-to-end research: question → data sourcing → factor
-                  development → testing → production analytics.
-                </li>
-                <li>
-                  Built and maintained pipelines with automated quality checks,
-                  documentation, and versioning for auditability.
-                </li>
-                <li>
-                  Designed decision-ready dashboards and reporting frameworks
-                  used by PMs and research leadership.
-                </li>
-                <li>
-                  Developed Shiny tools and internal R packages to standardize
-                  workflows and accelerate delivery.
-                </li>
-                <li>
-                  Evaluated third-party datasets (incl. ESG), validating
-                  coverage and signal behavior before integration.
-                </li>
-              </ul>
-            </div>
-
-            <div class="role role--divider">
-              <div class="role-head">
-                <h3 class="role-title">
-                  Software Engineer Apprenticeship — Coding Temple
-                </h3>
-                <p class="role-dates">Feb 2026 – Aug 2026</p>
-              </div>
-
-              <ul class="resume-bullets">
-                <li>
-                  Built full-stack applications with React frontends and Flask
-                  backends; integrated third-party APIs.
-                </li>
-                <li>
-                  Worked under tight deadlines with iterative delivery and
-                  documentation-first project hygiene.
-                </li>
-              </ul>
-            </div>
-          </article>
-
-          <!-- Selected systems -->
-          <article class="resume-card resume-card--wide">
-            <h2 class="resume-h2">Selected systems</h2>
-
-            <div class="proj">
-              <h3 class="proj-title">
-                Financial Time-Series Analytics &amp; API-Driven Dashboard
-              </h3>
-              <p class="proj-meta">
-                Python • Data pipelines • REST APIs • Validation • Deployment
+            <div class="skill-block">
+              <p class="skill-label">Infrastructure</p>
+              <p class="skill-value">
+                Docker, GitHub, REST APIs, Posit Workbench/Connect
               </p>
-              <ul class="resume-bullets">
-                <li>
-                  Ingests and normalizes large-scale time-series; computes
-                  returns, drawdowns, rolling stats, and relative metrics.
-                </li>
-                <li>
-                  Serves analytics via API endpoints for decoupled front-end
-                  consumption and reproducible runs.
-                </li>
-              </ul>
             </div>
-
-            <div class="proj proj--divider">
-              <h3 class="proj-title">
-                Quant Factor Research &amp; Commentary Engine
-              </h3>
-              <p class="proj-meta">
-                R • data.table • ggplot2/gt • Shiny • Reporting
+            <div class="skill-block">
+              <p class="skill-label">Domain</p>
+              <p class="skill-value">
+                Quantitative research, factor models, ESG data, macro analytics,
+                data governance
               </p>
-              <ul class="resume-bullets">
-                <li>
-                  Ranks factors across markets/periods; handles ties; compares
-                  cross-market performance consistently.
-                </li>
-                <li>
-                  Generates decision-ready commentary and institutional-style
-                  visuals with repeatable templates.
-                </li>
-              </ul>
             </div>
-          </article>
-
-          <!-- Education -->
-          <article class="resume-card">
-            <h2 class="resume-h2">Education</h2>
-            <p class="resume-p">
-              <strong>Coding Temple</strong> — Certificate, Software Engineering
-            </p>
-            <p class="resume-p">
-              <strong>University of Chicago</strong> — B.A., Latin American
-              Studies &amp; Economics
-            </p>
-          </article>
-
-          <!-- Certifications -->
-          <article class="resume-card">
-            <h2 class="resume-h2">Certifications</h2>
-            <ul class="resume-bullets">
-              <li>Coding Temple — Full Stack Software Engineer</li>
-            </ul>
           </article>
         </section>
       </div>
     </main>
 
     <footer class="site-footer">
-      <div class="container footer-inner">
-        <div class="footer-left">
-          <p>© 2026 Kathy Matos Linares. All rights reserved.</p>
-        </div>
-
-        <div class="footer-right">
-          <nav class="footer-legal" aria-label="Legal">
-            <a class="footer-link" href="privacy.html">Privacy Policy</a>
-            <span class="footer-dot" aria-hidden="true">•</span>
-            <a class="footer-link" href="terms.html">Terms of Use</a>
-          </nav>
-
-          <a
-            href="mailto:kmatosli@yahoo.com"
-            class="email-link"
-            aria-label="Email Kathy"
-          >
-            <svg
-              viewBox="0 0 24 24"
-              width="18"
-              height="18"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="1.8"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              aria-hidden="true"
+      <div class="container">
+        <div class="footer-inner">
+          <div class="footer-left">
+            <p>© 2026 Kathy Matos Linares. All rights reserved.</p>
+          </div>
+          <div class="footer-right">
+            <nav class="footer-legal" aria-label="Legal">
+              <a class="footer-link" href="privacy.html">Privacy Policy</a>
+              <span class="footer-dot" aria-hidden="true">•</span>
+              <a class="footer-link" href="terms.html">Terms of Use</a>
+            </nav>
+            <a
+              href="/cdn-cgi/l/email-protection#254e4844514a56494c655c444d4a4a0b464a48"
+              class="email-link"
+              aria-label="Email Kathy"
             >
-              <path d="M4 6h16v12H4z"></path>
-              <path d="M4 7l8 6 8-6"></path>
-            </svg>
-            <span>kmatosli@yahoo.com</span>
-          </a>
-
-          <a
-            href="https://github.com/kmatosli"
-            target="_blank"
-            rel="noreferrer"
-            aria-label="GitHub Profile"
-            class="footer-icon"
-          >
-            <svg
-              viewBox="0 0 24 24"
-              width="18"
-              height="18"
-              fill="currentColor"
-              aria-hidden="true"
+              <svg
+                viewBox="0 0 24 24"
+                width="22"
+                height="22"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.8"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                aria-hidden="true"
+              >
+                <path d="M4 6h16v12H4z"></path>
+                <path d="M4 7l8 6 8-6"></path>
+              </svg>
+              <span
+                ><span
+                  class="__cf_email__"
+                  data-cfemail="02696f63766d716e6b427b636a6d6d2c616d6f"
+                  >[email&#160;protected]</span
+                ></span
+              >
+            </a>
+            <a
+              href="https://github.com/kmatosli"
+              target="_blank"
+              rel="noreferrer"
+              aria-label="GitHub Profile"
+              class="footer-icon"
             >
-              <path
-                d="M12 0C5.37 0 0 5.37 0 12a12 12 0 008.2 11.4c.6.1.8-.26.8-.58
-              0-.28-.01-1.02-.02-2-3.34.73-4.04-1.61-4.04-1.61-.55-1.4-1.35-1.77-1.35-1.77
-              -1.1-.75.08-.73.08-.73 1.22.08 1.86 1.25 1.86 1.25
-              1.08 1.85 2.84 1.32 3.53 1 .1-.78.42-1.32.76-1.62
-              -2.66-.3-5.46-1.33-5.46-5.93
-              0-1.31.47-2.38 1.24-3.22-.12-.3-.54-1.52.12-3.17
-              0 0 1-.32 3.3 1.23a11.4 11.4 0 016 0C17 5.36 18 5.68 18 5.68
-              c.66 1.65.24 2.87.12 3.17.77.84 1.24 1.91 1.24 3.22
-              0 4.61-2.8 5.62-5.47 5.92.43.37.82 1.1.82 2.22
-              0 1.6-.01 2.89-.01 3.29
-              0 .32.2.69.81.57A12 12 0 0024 12c0-6.63-5.37-12-12-12z"
-              />
-            </svg>
-          </a>
-
-          <a
-            href="https://www.linkedin.com/in/kathy-matos-070802/"
-            target="_blank"
-            rel="noreferrer"
-            aria-label="LinkedIn Profile"
-            class="footer-icon"
-          >
-            <svg
-              viewBox="0 0 24 24"
-              width="18"
-              height="18"
-              fill="currentColor"
-              aria-hidden="true"
+              <svg
+                viewBox="0 0 24 24"
+                width="22"
+                height="22"
+                fill="currentColor"
+                aria-hidden="true"
+              >
+                <path
+                  d="M12 2C6.477 2 2 6.596 2 12.253c0 4.524 2.865 8.363 6.839 9.717.5.094.682-.22.682-.485 0-.24-.008-.874-.013-1.714-2.781.62-3.369-1.372-3.369-1.372-.454-1.18-1.11-1.494-1.11-1.494-.907-.636.069-.623.069-.623 1.003.072 1.53 1.055 1.53 1.055.893 1.564 2.344 1.113 2.915.85.09-.664.35-1.113.636-1.37-2.221-.26-4.555-1.138-4.555-5.063 0-1.118.39-2.032 1.029-2.748-.104-.262-.446-1.316.098-2.742 0 0 .84-.275 2.75 1.05a9.19 9.19 0 0 1 2.504-.35c.85.004 1.706.12 2.504.35 1.91-1.325 2.748-1.05 2.748-1.05.545 1.426.203 2.48.1 2.742.64.716 1.028 1.63 1.028 2.748 0 3.934-2.338 4.8-4.566 5.055.36.322.681.955.681 1.927 0 1.39-.012 2.512-.012 2.854 0 .268.18.584.688.485A10.27 10.27 0 0 0 22 12.253C22 6.596 17.523 2 12 2z"
+                ></path>
+              </svg>
+            </a>
+            <a
+              href="https://www.linkedin.com/in/kathy-matos-070802/"
+              target="_blank"
+              rel="noreferrer"
+              aria-label="LinkedIn Profile"
+              class="footer-icon"
             >
-              <path
-                d="M20.447 20.452H16.89v-5.569c0-1.328-.027-3.037-1.852-3.037
-              -1.853 0-2.136 1.445-2.136 2.939v5.667H9.345V9h3.414v1.561h.046
-              c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433
-              c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063
-              1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zM6.956 20.452H3.717V9h3.239v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.727v20.545C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.273V1.727C24 .774 23.2 0 22.222 0h.003z"
-              />
-            </svg>
-          </a>
+              <svg
+                viewBox="0 0 24 24"
+                width="22"
+                height="22"
+                fill="currentColor"
+                aria-hidden="true"
+              >
+                <path
+                  d="M20.447 20.452H17.1v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.655V9h3.214v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.401 0 4.167 2.37 4.167 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zM6.956 20.452H3.717V9h3.239v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.727v20.545C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.273V1.727C24 .774 23.2 0 22.222 0h.003z"
+                ></path>
+              </svg>
+            </a>
+          </div>
         </div>
       </div>
     </footer>

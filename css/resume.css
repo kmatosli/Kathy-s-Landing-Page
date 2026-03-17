@@ -1,17 +1,54 @@
-/* Resume page only — keep consistent with your existing tokens/fonts */
+Copy
 
+/* Resume page */
 .resume-page {
   background: var(--k-bg);
-  padding: 22px 0 34px 0;
 }
 
-/* Top hero block (compact, not poster-board tall) */
+/* Allow scroll on desktop — layout.css locks html/body for homepage */
+@media (min-width: 901px) {
+  html:has(body.page-resume) {
+    overflow-y: auto !important;
+    height: auto !important;
+  }
+
+  body.page-resume {
+    overflow-y: auto !important;
+    height: auto !important;
+  }
+
+  body.page-resume main {
+    height: auto !important;
+    overflow: visible !important;
+    display: block !important;
+    padding-bottom: calc(var(--footer-h) + 24px);
+  }
+}
+
+/* Hero: full-width dark section matching site hero system */
 .resume-hero {
-  display: grid;
-  grid-template-columns: 1.35fr 1fr;
-  gap: 18px;
-  align-items: start;
-  padding: 18px 0 10px 0;
+  background: var(--k-ink);
+  color: var(--k-bg);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  padding-top: 12px;
+  padding-bottom: 12px;
+}
+
+.resume-hero-inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 24px;
+}
+
+.resume-hero-left {
+  min-width: 0;
+}
+
+/* Content area below hero */
+.resume-content {
+  padding-top: 22px;
+  padding-bottom: 34px;
 }
 
 .resume-kicker {
@@ -20,26 +57,27 @@
   font-size: 12px;
   letter-spacing: 0.06em;
   text-transform: uppercase;
-  color: rgba(44, 51, 62, 0.55);
+  color: rgba(255, 255, 255, 0.55);
   margin: 0 0 8px 0;
 }
 
 .resume-title {
   font-family: var(--font-serif);
-  font-weight: 650;
-  font-size: 28px;
-  line-height: 1.15;
+  font-weight: 600;
+  font-size: clamp(21px, 2.08vw, 29px);
+  line-height: 1.12;
+  letter-spacing: -0.01em;
   margin: 0 0 10px 0;
-  color: var(--k-ink);
+  color: var(--k-bg);
 }
 
 .resume-lede {
   font-family: var(--font-sans);
-  font-size: 14px;
-  line-height: 1.55;
+  font-size: 16px;
+  line-height: 1.5;
   margin: 0 0 14px 0;
-  color: rgba(44, 51, 62, 0.78);
-  max-width: 70ch;
+  color: rgba(255, 255, 255, 0.82);
+  max-width: 56ch;
 }
 
 .resume-actions {
@@ -48,12 +86,32 @@
   flex-wrap: wrap;
 }
 
-/* Small visual: architecture strip */
-.arch-visual {
-  border: 1px solid rgba(44, 51, 62, 0.12);
+/* On dark hero background, primary button should be white */
+.resume-hero .btn-primary {
+  background: #ffffff;
+  color: #111827;
+}
+
+.resume-hero .btn-primary:hover {
+  background: var(--k-bg);
+  opacity: 0.92;
+}
+
+/* Hero right column: image replaces arch-visual strip */
+.resume-hero-right {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.resume-hero-img {
+  width: auto;
+  max-width: 100%;
+  max-height: 200px;
+  object-fit: contain;
   border-radius: 14px;
-  background: #fff;
-  padding: 12px;
+  display: block;
 }
 
 .arch-visual-inner {
