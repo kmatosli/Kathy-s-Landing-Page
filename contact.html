@@ -1,8 +1,8 @@
 <!doctype html>
 <html lang="en">
   <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Contact | Kathy Matos Linares</title>
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -18,7 +18,7 @@
     <link rel="stylesheet" href="css/responsive.css" />
     <link rel="stylesheet" href="css/components/footer.css" />
     <link rel="stylesheet" href="css/components/header.css" />
-    <link rel="stylesheet" href="css/components/hero.css" />
+    <link rel="stylesheet" href="css/components/ui.css" />
     <link rel="stylesheet" href="css/contact.css" />
   </head>
 
@@ -31,117 +31,288 @@
             <span class="brand-subtitle">Data Engineering &amp; Analytics</span>
           </a>
         </div>
-
         <ul class="navlinks">
           <li><a href="index.html">Home</a></li>
-          <li><a href="projects.html">Projects</a></li>
           <li><a href="about.html">About</a></li>
           <li><a href="contact.html" aria-current="page">Contact</a></li>
-          <li class="nav-divider" aria-hidden="true"></li>
-          <li>
-            <a class="navlink--resume" href="resume.html"
-              >Engineering Profile</a
-            >
-          </li>
         </ul>
       </nav>
     </header>
 
     <main>
-      <section class="hero" aria-labelledby="contact-title">
-        <div class="container hero-inner">
-          <div class="hero-text">
-            <h1 class="hero-title">
-              Let’s build systems that scale decisions.
+      <!-- ============================================================
+           ABOVE THE FOLD — dark panel, form is the hero
+      ============================================================ -->
+      <section class="contact-fold" aria-label="Get in touch">
+        <div class="container contact-fold__inner">
+          <!-- Left: tight positioning -->
+          <div class="contact-fold__left">
+            <p class="contact-fold__kicker">Let's build something</p>
+            <h1 class="contact-fold__heading">
+              Let's build systems that scale decisions.
             </h1>
-
-            <p class="hero-subtitle">
-              If you’re evaluating decision infrastructure, workflow
-              modernization, or production analytics systems, here’s the fastest
-              way to engage. I typically reply within 24–48 hours on business
-              days. For more complex topics, a short working call is usually the
-              fastest path.
+            <p class="contact-fold__body">
+              19 years of production discipline. Now available to your team.
             </p>
+            <p class="contact-fold__response">
+              I typically respond within 24–48 hours on business days. For
+              complex topics, a short working call is usually the fastest path.
+            </p>
+
+            <div class="contact-fold__divider" aria-hidden="true"></div>
+
+            <div class="contact-fold__stats">
+              <div class="contact-stat">
+                <span class="contact-stat__value">19</span>
+                <span class="contact-stat__label">Years in finance data</span>
+              </div>
+              <div class="contact-stat">
+                <span class="contact-stat__value">6+</span>
+                <span class="contact-stat__label">Production systems</span>
+              </div>
+              <div class="contact-stat">
+                <span class="contact-stat__value">3</span>
+                <span class="contact-stat__label">Skill layers</span>
+              </div>
+            </div>
           </div>
 
-          <aside
-            class="hero-visual contact-hero__cta"
-            aria-label="Primary contact action"
-          >
-            <a
-              class="contact-cta"
-              href="https://calendly.com/YOUR-USERNAME"
-              target="_blank"
-              rel="noreferrer"
-            >
-              Schedule Chat
-            </a>
+          <!-- Right: form -->
+          <div class="contact-fold__right">
+            <div class="contact-form-card">
+              <p class="form-card__label">Get in touch</p>
+              <p class="form-card__sub">
+                Select your intent and share your context
+              </p>
 
-            <ul class="contact-pills" aria-label="Best fit topics">
-              <li class="contact-pill">Decision infrastructure</li>
-              <li class="contact-pill">Workflow modernization</li>
-              <li class="contact-pill">Production analytics</li>
-              <li class="contact-pill">Signal pipelines</li>
-              <li class="contact-pill">Governance &amp; QA</li>
-            </ul>
-          </aside>
+              <!-- Intent tabs -->
+              <div class="form-tabs" role="group" aria-label="Contact intent">
+                <button
+                  class="form-tab is-active"
+                  data-tab="hiring"
+                  type="button"
+                >
+                  Hiring
+                </button>
+                <button class="form-tab" data-tab="consulting" type="button">
+                  Consulting
+                </button>
+                <button class="form-tab" data-tab="collaboration" type="button">
+                  Collaboration
+                </button>
+              </div>
+
+              <!-- Form -->
+              <!-- To activate: replace YOUR_FORMSPREE_ID at formspree.io -->
+              <form
+                class="contact-form"
+                action="https://formspree.io/f/YOUR_FORMSPREE_ID"
+                method="POST"
+                novalidate
+              >
+                <input
+                  type="hidden"
+                  name="intent"
+                  id="form-intent"
+                  value="Hiring"
+                />
+
+                <div class="form-group">
+                  <label class="form-label" for="full-name">Full Name</label>
+                  <input
+                    class="form-input"
+                    type="text"
+                    id="full-name"
+                    name="full_name"
+                    placeholder="Jane Smith"
+                    required
+                  />
+                </div>
+
+                <div class="form-group">
+                  <label class="form-label" for="email">Email</label>
+                  <input
+                    class="form-input"
+                    type="email"
+                    id="email"
+                    name="email"
+                    placeholder="jane@company.com"
+                    required
+                  />
+                </div>
+
+                <div class="form-group">
+                  <label class="form-label" for="message">
+                    Message
+                    <span class="form-label__hint" id="message-hint"
+                      >— Tell me about the role, team, and timeline</span
+                    >
+                  </label>
+                  <textarea
+                    class="form-input form-textarea"
+                    id="message"
+                    name="message"
+                    rows="5"
+                    required
+                  ></textarea>
+                </div>
+
+                <button class="form-submit" type="submit">
+                  Send message →
+                </button>
+              </form>
+            </div>
+          </div>
         </div>
       </section>
 
-      <section class="contact-panels" aria-labelledby="engagement-title">
-        <div class="container home-panels__inner">
-          <div class="projects-grid">
-            <h2 id="engagement-title" class="contact-section-title">
-              How to engage
-            </h2>
-            <p class="contact-section-subtitle">
-              A short note with context makes the first conversation more
-              productive.
-            </p>
+      <!-- ============================================================
+           SUBSTANCE BAND — Core Strengths
+      ============================================================ -->
+      <section class="contact-substance" aria-labelledby="strengths-title">
+        <div class="container">
+          <p class="substance-kicker">What you bring</p>
+          <h2 id="strengths-title" class="substance-title">Core strengths</h2>
+
+          <div class="strength-cards">
+            <article class="strength-card">
+              <div class="strength-icon" aria-hidden="true">
+                <svg
+                  viewBox="0 0 24 24"
+                  width="20"
+                  height="20"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.6"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+                </svg>
+              </div>
+              <h3 class="strength-card__title">High-stakes environments</h3>
+              <p class="strength-card__desc">
+                Financial services. Regulated data. Decisions that move real
+                money.
+              </p>
+            </article>
+
+            <article class="strength-card">
+              <div class="strength-icon" aria-hidden="true">
+                <svg
+                  viewBox="0 0 24 24"
+                  width="20"
+                  height="20"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.6"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <path d="M4 19V5"></path>
+                  <path d="M4 19h16"></path>
+                  <path d="M7 15l3-3 3 2 4-6"></path>
+                </svg>
+              </div>
+              <h3 class="strength-card__title">End-to-end pipelines</h3>
+              <p class="strength-card__desc">
+                Ingestion to decision interface. Built for production, not
+                retrofitted.
+              </p>
+            </article>
+
+            <article class="strength-card">
+              <div class="strength-icon" aria-hidden="true">
+                <svg
+                  viewBox="0 0 24 24"
+                  width="20"
+                  height="20"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.6"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <circle cx="12" cy="12" r="3"></circle>
+                  <path
+                    d="M12 2v3M12 19v3M4.22 4.22l2.12 2.12M17.66 17.66l2.12 2.12M2 12h3M19 12h3M4.22 19.78l2.12-2.12M17.66 6.34l2.12-2.12"
+                  ></path>
+                </svg>
+              </div>
+              <h3 class="strength-card__title">AI + data integration</h3>
+              <p class="strength-card__desc">
+                RAG, embeddings, vector search. Deployable systems, not demos.
+              </p>
+            </article>
           </div>
+        </div>
+      </section>
 
-          <div class="contact-cards" role="list">
-            <article class="contact-card" role="listitem">
-              <h3 class="contact-card__title">Hiring &amp; Senior Roles</h3>
-              <p class="contact-card__desc">
-                For hiring managers and recruiters evaluating senior systems or
-                platform roles.
-              </p>
-              <ul class="contact-card__list">
-                <li>Scope of role</li>
-                <li>Primary business problem</li>
-                <li>Current stack</li>
-                <li>Timeline for hire</li>
-              </ul>
-            </article>
+      <!-- ============================================================
+           TECHNICAL ARSENAL — three layers
+      ============================================================ -->
+      <section class="contact-arsenal" aria-labelledby="arsenal-title">
+        <div class="container">
+          <h2 id="arsenal-title" class="arsenal-title">Technical arsenal</h2>
+          <a
+            class="arsenal-cv"
+            href="assets/Kathy_Matos_Linares_CV.pdf"
+            download
+            >Download CV</a
+          >
 
-            <article class="contact-card" role="listitem">
-              <h3 class="contact-card__title">Workflow Modernization</h3>
-              <p class="contact-card__desc">
-                For teams modernizing analytics workflows, pipelines, and
-                operating structure.
-              </p>
-              <ul class="contact-card__list">
-                <li>Current tool stack</li>
-                <li>Primary bottleneck</li>
-                <li>Decision owner</li>
-                <li>Timeline</li>
-              </ul>
-            </article>
+          <div class="arsenal-table">
+            <div class="arsenal-row">
+              <div class="arsenal-layer">Data Engineering</div>
+              <div class="arsenal-chips">
+                <span class="arsenal-chip">Python</span>
+                <span class="arsenal-chip">R</span>
+                <span class="arsenal-chip">SQL</span>
+                <span class="arsenal-chip">PostgreSQL</span>
+                <span class="arsenal-chip">MongoDB</span>
+                <span class="arsenal-chip">BigQuery</span>
+                <span class="arsenal-chip">FastAPI</span>
+                <span class="arsenal-chip">Flask</span>
+                <span class="arsenal-chip">Shiny</span>
+                <span class="arsenal-chip">dbt</span>
+                <span class="arsenal-chip">Airflow</span>
+                <span class="arsenal-chip">Kafka</span>
+              </div>
+            </div>
 
-            <article class="contact-card" role="listitem">
-              <h3 class="contact-card__title">Technical Collaboration</h3>
-              <p class="contact-card__desc">
-                For architecture reviews, pipeline redesign, or signal modeling
-                initiatives.
-              </p>
-              <ul class="contact-card__list">
-                <li>Objective</li>
-                <li>Known failure points</li>
-                <li>Stakeholders impacted</li>
-                <li>Definition of success</li>
-              </ul>
-            </article>
+            <div class="arsenal-row">
+              <div class="arsenal-layer">AI &amp; ML</div>
+              <div class="arsenal-chips">
+                <span class="arsenal-chip">RAG Pipelines</span>
+                <span class="arsenal-chip">Embeddings</span>
+                <span class="arsenal-chip">ChromaDB</span>
+                <span class="arsenal-chip">Ollama</span>
+                <span class="arsenal-chip">LLM Integration</span>
+                <span class="arsenal-chip">Prompt Engineering</span>
+                <span class="arsenal-chip">Streamlit</span>
+                <span class="arsenal-chip">Semantic Search</span>
+                <span class="arsenal-chip">Plotly</span>
+                <span class="arsenal-chip">ggplot2</span>
+                <span class="arsenal-chip">Quarto</span>
+              </div>
+            </div>
+
+            <div class="arsenal-row">
+              <div class="arsenal-layer">DevOps &amp; Cloud</div>
+              <div class="arsenal-chips">
+                <span class="arsenal-chip">Docker</span>
+                <span class="arsenal-chip">Kubernetes</span>
+                <span class="arsenal-chip">AWS EC2</span>
+                <span class="arsenal-chip">Azure</span>
+                <span class="arsenal-chip">Terraform</span>
+                <span class="arsenal-chip">Jenkins</span>
+                <span class="arsenal-chip">GitHub Actions</span>
+                <span class="arsenal-chip">Ansible</span>
+                <span class="arsenal-chip">Linux</span>
+                <span class="arsenal-chip">ELK / Splunk</span>
+                <span class="arsenal-chip">Nagios</span>
+              </div>
+            </div>
           </div>
         </div>
       </section>
@@ -153,14 +324,12 @@
           <div class="footer-left">
             <p>© 2026 Kathy Matos Linares. All rights reserved.</p>
           </div>
-
           <div class="footer-right">
             <nav class="footer-legal" aria-label="Legal">
               <a class="footer-link" href="privacy.html">Privacy Policy</a>
               <span class="footer-dot" aria-hidden="true">•</span>
               <a class="footer-link" href="terms.html">Terms of Use</a>
             </nav>
-
             <a
               href="mailto:kmatosli@yahoo.com"
               class="email-link"
@@ -182,7 +351,6 @@
               </svg>
               <span>kmatosli@yahoo.com</span>
             </a>
-
             <a
               href="https://github.com/kmatosli"
               target="_blank"
@@ -198,21 +366,10 @@
                 aria-hidden="true"
               >
                 <path
-                  d="M12 2C6.477 2 2 6.596 2 12.253c0 4.524 2.865 8.363 6.839 9.717
-              .5.094.682-.22.682-.485 0-.24-.008-.874-.013-1.714-2.781.62-3.369-1.372-3.369-1.372
-              -.454-1.18-1.11-1.494-1.11-1.494-.907-.636.069-.623.069-.623
-              1.003.072 1.53 1.055 1.53 1.055.893 1.564 2.344 1.113 2.915.85
-              .09-.664.35-1.113.636-1.37-2.221-.26-4.555-1.138-4.555-5.063
-              0-1.118.39-2.032 1.029-2.748-.104-.262-.446-1.316.098-2.742
-              0 0 .84-.275 2.75 1.05a9.19 9.19 0 0 1 2.504-.35c.85.004 1.706.12 2.504.35
-              1.91-1.325 2.748-1.05 2.748-1.05.545 1.426.203 2.48.1 2.742
-              .64.716 1.028 1.63 1.028 2.748 0 3.934-2.338 4.8-4.566 5.055
-              .36.322.681.955.681 1.927 0 1.39-.012 2.512-.012 2.854
-              0 .268.18.584.688.485A10.27 10.27 0 0 0 22 12.253C22 6.596 17.523 2 12 2z"
+                  d="M12 2C6.477 2 2 6.596 2 12.253c0 4.524 2.865 8.363 6.839 9.717.5.094.682-.22.682-.485 0-.24-.008-.874-.013-1.714-2.781.62-3.369-1.372-3.369-1.372-.454-1.18-1.11-1.494-1.11-1.494-.907-.636.069-.623.069-.623 1.003.072 1.53 1.055 1.53 1.055.893 1.564 2.344 1.113 2.915.85.09-.664.35-1.113.636-1.37-2.221-.26-4.555-1.138-4.555-5.063 0-1.118.39-2.032 1.029-2.748-.104-.262-.446-1.316.098-2.742 0 0 .84-.275 2.75 1.05a9.19 9.19 0 0 1 2.504-.35c.85.004 1.706.12 2.504.35 1.91-1.325 2.748-1.05 2.748-1.05.545 1.426.203 2.48.1 2.742.64.716 1.028 1.63 1.028 2.748 0 3.934-2.338 4.8-4.566 5.055.36.322.681.955.681 1.927 0 1.39-.012 2.512-.012 2.854 0 .268.18.584.688.485A10.27 10.27 0 0 0 22 12.253C22 6.596 17.523 2 12 2z"
                 ></path>
               </svg>
             </a>
-
             <a
               href="https://www.linkedin.com/in/kathy-matos-070802/"
               target="_blank"
@@ -228,13 +385,7 @@
                 aria-hidden="true"
               >
                 <path
-                  d="M20.447 20.452H17.1v-5.569c0-1.328-.027-3.037-1.852-3.037
-              -1.853 0-2.136 1.445-2.136 2.939v5.667H9.655V9h3.214v1.561h.046
-              c.477-.9 1.637-1.85 3.37-1.85 3.401 0 4.167 2.37 4.167 5.455v6.286zM5.337 7.433
-              c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063
-              1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zM6.956 20.452H3.717V9h3.239v11.452zM22.225 0H1.771
-              C.792 0 0 .774 0 1.727v20.545C0 23.227.792 24 1.771 24h20.451
-              C23.2 24 24 23.227 24 22.273V1.727C24 .774 23.2 0 22.222 0h.003z"
+                  d="M20.447 20.452H17.1v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.655V9h3.214v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.401 0 4.167 2.37 4.167 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zM6.956 20.452H3.717V9h3.239v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.727v20.545C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.273V1.727C24 .774 23.2 0 22.222 0h.003z"
                 ></path>
               </svg>
             </a>
@@ -242,5 +393,27 @@
         </div>
       </div>
     </footer>
+
+    <script>
+      // Tab switching — updates intent label and message hint
+      const hints = {
+        hiring: "— Tell me about the role, team, and timeline",
+        consulting: "— Describe the system or workflow you need help with",
+        collaboration: "— What are you building and where do you need support?",
+      };
+
+      document.querySelectorAll(".form-tab").forEach((tab) => {
+        tab.addEventListener("click", function () {
+          document
+            .querySelectorAll(".form-tab")
+            .forEach((t) => t.classList.remove("is-active"));
+          this.classList.add("is-active");
+          const intent = this.dataset.tab;
+          document.getElementById("form-intent").value = this.textContent;
+          document.getElementById("message-hint").textContent =
+            hints[intent] || "";
+        });
+      });
+    </script>
   </body>
 </html>

@@ -1,272 +1,484 @@
-/* css/contact.css */
+/* ============================================================
+   contact.css
+   Sections:
+   - Desktop scroll override
+   - Above-the-fold dark hero + form card
+   - Intent tabs
+   - Form inputs
+   - Core strengths band
+   - Technical arsenal table
+============================================================ */
 
-/* --------------------------------------------------
-   Contact page should behave like the same site system
-   as index.html, not as a separate article page.
-   -------------------------------------------------- */
-
-.page-contact .navlinks a[aria-current="page"] {
-  border-bottom: 2px solid currentColor;
-  padding-bottom: 2px;
-  font-weight: 600;
-}
-
-/* Keep the same no-scroll desktop behavior as the homepage */
+/* ============================================================
+   DESKTOP SCROLL OVERRIDE
+============================================================ */
 @media (min-width: 901px) {
-  .page-contact {
-    height: 100%;
-    overflow: hidden;
+  html:has(body.page-contact) {
+    overflow-y: auto !important;
+    height: auto !important;
   }
 
-  .page-contact main {
-    height: calc(100vh - var(--header-h) - var(--footer-h));
-    overflow: hidden;
-    display: flex;
-    flex-direction: column;
-    min-height: 0;
+  body.page-contact {
+    overflow-y: auto !important;
+    height: auto !important;
+  }
+
+  body.page-contact main {
+    height: auto !important;
+    overflow: visible !important;
+    display: block !important;
+    padding-bottom: calc(var(--footer-h) + 24px);
   }
 }
 
-/* --------------------------------------------------
-   Hero: reuse the home hero system
-   -------------------------------------------------- */
-
-.contact-hero {
-  flex: 0 0 auto;
+/* ============================================================
+   ABOVE THE FOLD — dark panel
+============================================================ */
+.contact-fold {
+  background: var(--k-ink);
+  padding: 48px 0 56px;
 }
 
-.contact-hero__inner {
-  align-items: flex-start;
+.contact-fold__inner {
+  display: grid;
+  grid-template-columns: 1fr 1.1fr;
+  gap: 48px;
+  align-items: start;
 }
 
-.contact-hero__text {
-  max-width: 660px;
-}
-
-.contact-eyebrow {
-  margin: 0 0 8px;
+/* Left */
+.contact-fold__kicker {
   font-family: var(--font-sans);
-  font-size: 0.8rem;
-  line-height: 1.2;
-  letter-spacing: 0.14em;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: rgba(255, 255, 255, 0.7);
+  color: rgba(255, 255, 255, 0.45);
+  margin: 0 0 12px 0;
 }
 
-.contact-hero .hero-title {
-  max-width: 11.5ch;
+.contact-fold__heading {
+  font-family: var(--font-serif);
+  font-weight: 600;
+  font-size: clamp(22px, 2.4vw, 32px);
+  line-height: 1.1;
+  color: #ffffff;
+  margin: 0 0 16px 0;
+  max-width: 16ch;
 }
 
-.contact-hero .hero-subtitle {
-  max-width: 34ch;
-}
-
-.contact-supporting {
-  margin: 10px 0 0;
-  max-width: 48ch;
+.contact-fold__body {
   font-family: var(--font-sans);
-  font-size: 0.98rem;
-  line-height: 1.5;
+  font-size: 15px;
+  line-height: 1.55;
   color: rgba(255, 255, 255, 0.82);
+  margin: 0 0 12px 0;
 }
 
-.contact-hero__cta {
+.contact-fold__response {
+  font-family: var(--font-sans);
+  font-size: 13px;
+  line-height: 1.65;
+  color: rgba(255, 255, 255, 0.5);
+  margin: 0;
+  max-width: 38ch;
+}
+
+.contact-fold__divider {
+  height: 1px;
+  background: rgba(255, 255, 255, 0.1);
+  margin: 24px 0;
+  width: 100%;
+}
+
+.contact-fold__links {
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
-  gap: 14px;
-}
-
-.contact-cta {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  min-height: 44px;
-  padding: 12px 20px;
-  border-radius: 999px;
-  background: #ffffff;
-  color: #111827;
-  text-decoration: none;
-  font-family: var(--font-sans);
-  font-weight: 600;
-  line-height: 1;
-  transition:
-    transform 120ms ease,
-    box-shadow 120ms ease,
-    background-color 120ms ease,
-    color 120ms ease;
-}
-
-.contact-cta:hover {
-  transform: translateY(-1px);
-}
-
-.contact-cta:focus-visible {
-  outline: 2px solid rgba(255, 255, 255, 0.95);
-  outline-offset: 3px;
-}
-
-.contact-pills {
-  list-style: none;
-  display: flex;
-  flex-wrap: wrap;
   gap: 10px;
-  margin: 0;
-  padding: 0;
-  max-width: 250px;
 }
 
-.contact-pill {
+.contact-info-link {
   display: inline-flex;
   align-items: center;
-  min-height: 34px;
-  padding: 7px 12px;
-  border-radius: 999px;
-  border: 1px solid rgba(255, 255, 255, 0.18);
-  background: rgba(255, 255, 255, 0.08);
-  color: #ffffff;
+  gap: 8px;
   font-family: var(--font-sans);
-  font-size: 0.9rem;
+  font-size: 13px;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.7);
+  text-decoration: none;
+  transition: color 0.15s ease;
+}
+
+.contact-info-link:hover {
+  color: #ffffff;
+}
+
+.contact-fold__stats {
+  display: flex;
+  gap: 28px;
+  margin-top: 28px;
+}
+
+.contact-stat {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.contact-stat__value {
+  font-family: var(--font-serif);
+  font-weight: 600;
+  font-size: 28px;
   line-height: 1;
+  color: #ffffff;
+}
+
+.contact-stat__label {
+  font-family: var(--font-sans);
+  font-size: 11px;
+  color: rgba(255, 255, 255, 0.45);
   white-space: nowrap;
 }
 
-/* --------------------------------------------------
-   Lower panel area: same light region logic as home
-   -------------------------------------------------- */
-
-.contact-panels {
-  flex: 1;
-  min-height: 0;
-  padding: 14px 0 0;
-  overflow: hidden;
+/* ============================================================
+   FORM CARD
+============================================================ */
+.contact-form-card {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 16px;
+  padding: 24px 24px 28px;
 }
 
-.contact-panels .container {
-  height: 100%;
+.form-card__label {
+  font-family: var(--font-sans);
+  font-weight: 700;
+  font-size: 15px;
+  color: #ffffff;
+  margin: 0 0 4px 0;
+}
+
+.form-card__sub {
+  font-family: var(--font-sans);
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.45);
+  margin: 0 0 16px 0;
+}
+
+/* ============================================================
+   INTENT TABS
+============================================================ */
+.form-tabs {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 20px;
+}
+
+.form-tab {
+  padding: 7px 14px;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  background: transparent;
+  color: rgba(255, 255, 255, 0.6);
+  font-family: var(--font-sans);
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.form-tab:hover {
+  border-color: rgba(255, 255, 255, 0.4);
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.form-tab.is-active {
+  background: var(--k-blue-1);
+  border-color: var(--k-blue-1);
+  color: #ffffff;
+}
+
+/* ============================================================
+   FORM
+============================================================ */
+.contact-form {
   display: flex;
   flex-direction: column;
-  min-height: 0;
+  gap: 12px;
 }
 
-.contact-panels__head {
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.form-label {
+  font-family: var(--font-sans);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.form-label__hint {
+  font-weight: 400;
+  text-transform: none;
+  letter-spacing: 0;
+  color: rgba(255, 255, 255, 0.3);
+  font-size: 11px;
+}
+
+.form-input {
+  width: 100%;
+  padding: 10px 12px;
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: rgba(255, 255, 255, 0.06);
+  color: #ffffff;
+  font-family: var(--font-sans);
+  font-size: 13px;
+  line-height: 1.4;
+  outline: none;
+  transition:
+    border-color 0.15s ease,
+    background 0.15s ease;
+  box-sizing: border-box;
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+.form-input::placeholder {
+  color: rgba(255, 255, 255, 0.25);
+}
+
+.form-input:focus {
+  border-color: var(--k-blue-2);
+  background: rgba(255, 255, 255, 0.09);
+}
+
+.form-textarea {
+  resize: vertical;
+  min-height: 100px;
+}
+
+.form-submit {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px 0;
+  width: 100%;
+  border-radius: 10px;
+  border: none;
+  background: var(--k-blue-1);
+  color: #ffffff;
+  font-family: var(--font-sans);
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition:
+    background 0.15s ease,
+    transform 0.15s ease;
+  margin-top: 4px;
+}
+
+.form-submit:hover {
+  background: var(--k-blue-2);
+  transform: translateY(-1px);
+}
+
+/* ============================================================
+   CORE STRENGTHS BAND — light background
+============================================================ */
+.contact-substance {
+  background: var(--k-bg);
+  padding: 48px 0;
+}
+
+.substance-kicker {
+  font-family: var(--font-sans);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: rgba(44, 51, 62, 0.45);
+  margin: 0 0 6px 0;
+}
+
+.substance-title {
+  font-family: var(--font-serif);
+  font-weight: 600;
+  font-size: 20px;
+  color: var(--k-ink);
+  margin: 0 0 24px 0;
+}
+
+.strength-cards {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) auto;
-  gap: 18px;
-  align-items: baseline;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.strength-card {
+  border: 1px solid rgba(44, 51, 62, 0.1);
+  border-radius: 16px;
+  background: #fff;
+  padding: 20px;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.04);
+}
+
+.strength-icon {
+  width: 36px;
+  height: 36px;
+  border-radius: 10px;
+  background: rgba(104, 137, 192, 0.12);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--k-blue-1);
   margin-bottom: 12px;
 }
 
-.contact-section-title {
-  margin: 0;
-  font-family: var(--font-serif);
-  font-size: 1.5rem;
-  line-height: 1.2;
-  font-weight: 600;
-  color: #111827;
-}
-
-.contact-section-subtitle {
-  margin: 0;
-  max-width: 38ch;
+.strength-card__title {
   font-family: var(--font-sans);
-  font-size: 0.96rem;
-  line-height: 1.45;
-  color: #5b6474;
-}
-
-.contact-cards {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 18px;
-  align-items: stretch;
-}
-
-.contact-card {
-  border: 1px solid rgba(17, 24, 39, 0.08);
-  border-radius: 16px;
-  background: #ffffff;
-  box-shadow: 0 8px 20px rgba(17, 24, 39, 0.06);
-  padding: 16px 16px 14px;
-}
-
-.contact-card__title {
-  margin: 0 0 8px;
-  font-family: var(--font-sans);
-  font-size: 1.02rem;
-  line-height: 1.25;
   font-weight: 700;
-  color: #111827;
+  font-size: 14px;
+  color: var(--k-ink);
+  margin: 0 0 8px 0;
 }
 
-.contact-card__desc {
-  margin: 0 0 10px;
+.strength-card__desc {
   font-family: var(--font-sans);
-  font-size: 0.95rem;
-  line-height: 1.45;
-  color: #5b6474;
-}
-
-.contact-card__list {
+  font-size: 13px;
+  line-height: 1.6;
+  color: rgba(44, 51, 62, 0.68);
   margin: 0;
-  padding-left: 18px;
+}
+
+/* ============================================================
+   TECHNICAL ARSENAL TABLE
+============================================================ */
+.contact-arsenal {
+  background: #f8f9fb;
+  padding: 40px 0 48px;
+  border-top: 1px solid rgba(44, 51, 62, 0.07);
+}
+
+.contact-arsenal .container {
+  display: flex;
+  flex-direction: column;
+}
+
+.arsenal-title {
+  font-family: var(--font-serif);
+  font-weight: 600;
+  font-size: 20px;
+  color: var(--k-ink);
+  margin: 0 0 4px 0;
+}
+
+.arsenal-cv {
   font-family: var(--font-sans);
-  font-size: 0.94rem;
-  line-height: 1.45;
-  color: #111827;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--k-blue-1);
+  text-decoration: none;
+  margin-bottom: 24px;
+  align-self: flex-start;
 }
 
-.contact-card__list li {
-  margin: 5px 0;
+.arsenal-cv:hover {
+  text-decoration: underline;
+  text-underline-offset: 4px;
 }
 
-/* --------------------------------------------------
-   Responsive
-   -------------------------------------------------- */
+.arsenal-table {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  border: 1px solid rgba(44, 51, 62, 0.1);
+  border-radius: 14px;
+  overflow: hidden;
+  background: #fff;
+}
 
-@media (max-width: 1100px) {
-  .contact-hero__inner {
-    display: flex;
-    flex-direction: column;
-    gap: 18px;
+.arsenal-row {
+  display: grid;
+  grid-template-columns: 160px 1fr;
+  gap: 0;
+  border-bottom: 1px solid rgba(44, 51, 62, 0.07);
+  align-items: center;
+  min-height: 52px;
+}
+
+.arsenal-row:last-child {
+  border-bottom: none;
+}
+
+.arsenal-layer {
+  font-family: var(--font-sans);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgba(44, 51, 62, 0.5);
+  padding: 14px 20px;
+  background: rgba(44, 51, 62, 0.02);
+  border-right: 1px solid rgba(44, 51, 62, 0.07);
+  height: 100%;
+  display: flex;
+  align-items: center;
+}
+
+.arsenal-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  padding: 12px 16px;
+}
+
+.arsenal-chip {
+  font-family: var(--font-sans);
+  font-size: 12px;
+  font-weight: 500;
+  color: rgba(44, 51, 62, 0.78);
+  background: rgba(44, 51, 62, 0.05);
+  border: 1px solid rgba(44, 51, 62, 0.1);
+  border-radius: 999px;
+  padding: 4px 10px;
+  white-space: nowrap;
+}
+
+/* ============================================================
+   RESPONSIVE
+============================================================ */
+@media (max-width: 900px) {
+  .contact-fold__inner {
+    grid-template-columns: 1fr;
+    gap: 32px;
   }
 
-  .contact-hero .hero-title,
-  .contact-hero .hero-subtitle,
-  .contact-supporting {
+  .contact-fold__heading {
     max-width: none;
   }
 
-  .contact-pills {
+  .contact-fold__body {
     max-width: none;
   }
 
-  .contact-panels__head {
-    grid-template-columns: 1fr;
-    gap: 8px;
-  }
-
-  .contact-cards {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-}
-
-@media (max-width: 640px) {
-  .contact-cards {
+  .strength-cards {
     grid-template-columns: 1fr;
   }
 
-  .contact-pill {
-    white-space: normal;
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .contact-cta {
-    transition: none;
+  .arsenal-row {
+    grid-template-columns: 1fr;
   }
 
-  .contact-cta:hover {
-    transform: none;
+  .arsenal-layer {
+    border-right: none;
+    border-bottom: 1px solid rgba(44, 51, 62, 0.07);
+    height: auto;
+    padding: 10px 16px;
   }
 }

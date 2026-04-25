@@ -1,26 +1,14 @@
 <!doctype html>
 <html lang="en">
   <head>
-    <!-- ============================================================
-       KML — Landing Page (index.html)
-       What this file does:
-       - Defines the semantic HTML structure for the landing page
-       - Includes required sections: Nav, Hero, Projects, Footer
-       - Provides hooks for CSS + JS (hamburger menu, layout, components)
-       Notes:
-       - Styling lives in /css/*.css (linked below)
-       - Interactions live in /js/*.js (linked below)
-       ============================================================ -->
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta
       name="description"
       content="Portfolio landing page showcasing data engineering, analytics infrastructure, and quantitative systems."
     />
-
     <title>Kathy Matos Linares | Data Engineering & Analytics</title>
 
-    <!-- # ---- CSS (no styling here; just hooks) ---- -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -30,26 +18,288 @@
 
     <link rel="stylesheet" href="css/base.css" />
     <link rel="stylesheet" href="css/layout.css" />
-    <link rel="stylesheet" href="css/components/architecture.css" />
     <link rel="stylesheet" href="css/components/footer.css" />
     <link rel="stylesheet" href="css/components/header.css" />
     <link rel="stylesheet" href="css/components/hero.css" />
     <link rel="stylesheet" href="css/components/project.css" />
-    <!-- REMOVED: tabs.css (tabs/pills are removed from homepage) -->
     <link rel="stylesheet" href="css/components/ui.css" />
-
     <link rel="stylesheet" href="css/pages.css" />
     <link rel="stylesheet" href="css/responsive.css" />
+
+    <style>
+      /* ============================================================
+         PROJECTS SECTION HEADING
+         ============================================================ */
+      .projects-heading {
+        display: flex;
+        align-items: baseline;
+        justify-content: space-between;
+        margin-bottom: 16px;
+      }
+
+      .projects-heading h2 {
+        font-family: var(--font-serif);
+        font-weight: 600;
+        font-size: 18px;
+        color: var(--k-ink);
+        margin: 0;
+      }
+
+      .projects-heading p {
+        font-family: var(--font-sans);
+        font-size: 13px;
+        color: rgba(44, 51, 62, 0.6);
+        margin: 0;
+      }
+
+      /* ============================================================
+         PROJECTS GRID — 3 columns, wraps to 2 rows for 6 cards
+         ============================================================ */
+      .projects-grid {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 14px;
+        align-items: start;
+      }
+
+      @media (max-width: 900px) {
+        .projects-grid {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+      }
+
+      @media (max-width: 600px) {
+        .projects-grid {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      /* ============================================================
+         MODAL OVERLAY
+         ============================================================ */
+      .modal-overlay {
+        position: fixed;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.55);
+        z-index: 1000;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 24px;
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 0.2s ease;
+      }
+
+      .modal-overlay.is-open {
+        opacity: 1;
+        pointer-events: all;
+      }
+
+      .modal {
+        background: #fff;
+        border-radius: 20px;
+        width: 100%;
+        max-width: 640px;
+        max-height: 90vh;
+        overflow-y: auto;
+        box-shadow: 0 24px 64px rgba(0, 0, 0, 0.22);
+        transform: translateY(12px);
+        transition: transform 0.22s ease;
+      }
+
+      .modal-overlay.is-open .modal {
+        transform: translateY(0);
+      }
+
+      /* Modal image placeholder */
+      .modal-img {
+        width: 100%;
+        height: 200px;
+        object-fit: cover;
+        border-radius: 20px 20px 0 0;
+        display: block;
+        background: linear-gradient(135deg, #2c333e 0%, #34568b 100%);
+      }
+
+      .modal-img-placeholder {
+        width: 100%;
+        height: 200px;
+        border-radius: 20px 20px 0 0;
+        background: linear-gradient(135deg, #2c333e 0%, #34568b 100%);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: rgba(255, 255, 255, 0.4);
+        font-family: var(--font-sans);
+        font-size: 13px;
+      }
+
+      .modal-body {
+        padding: 24px;
+      }
+
+      .modal-title {
+        font-family: var(--font-serif);
+        font-weight: 600;
+        font-size: 20px;
+        color: var(--k-ink);
+        margin: 0 0 8px 0;
+        line-height: 1.2;
+      }
+
+      .modal-stack {
+        font-family: var(--font-sans);
+        font-size: 12px;
+        color: rgba(44, 51, 62, 0.55);
+        margin: 0 0 14px 0;
+      }
+
+      .modal-desc {
+        font-family: var(--font-sans);
+        font-size: 14px;
+        line-height: 1.65;
+        color: rgba(44, 51, 62, 0.82);
+        margin: 0 0 16px 0;
+      }
+
+      .modal-highlights {
+        padding-left: 18px;
+        margin: 0 0 20px 0;
+        font-family: var(--font-sans);
+        font-size: 13px;
+        line-height: 1.6;
+        color: rgba(44, 51, 62, 0.78);
+      }
+
+      .modal-highlights li + li {
+        margin-top: 6px;
+      }
+
+      .modal-actions {
+        display: flex;
+        gap: 10px;
+        flex-wrap: wrap;
+        margin-bottom: 20px;
+      }
+
+      .modal-btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        padding: 9px 16px;
+        border-radius: 10px;
+        font-family: var(--font-sans);
+        font-weight: 600;
+        font-size: 13px;
+        text-decoration: none;
+        transition:
+          opacity 0.15s ease,
+          transform 0.15s ease;
+      }
+
+      .modal-btn:hover {
+        opacity: 0.88;
+        transform: translateY(-1px);
+      }
+
+      .modal-btn--github {
+        background: var(--k-ink);
+        color: #fff;
+      }
+
+      .modal-btn--app {
+        background: var(--k-blue-1);
+        color: #fff;
+      }
+
+      .modal-btn--disabled {
+        background: rgba(44, 51, 62, 0.08);
+        color: rgba(44, 51, 62, 0.45);
+        cursor: default;
+        pointer-events: none;
+      }
+
+      .modal-close {
+        display: block;
+        width: 100%;
+        padding: 10px;
+        border: 1px solid rgba(44, 51, 62, 0.14);
+        border-radius: 10px;
+        background: transparent;
+        font-family: var(--font-sans);
+        font-size: 13px;
+        font-weight: 600;
+        color: rgba(44, 51, 62, 0.65);
+        cursor: pointer;
+        transition: background 0.15s ease;
+      }
+
+      .modal-close:hover {
+        background: rgba(44, 51, 62, 0.05);
+      }
+
+      /* Card cursor pointer to signal clickable */
+      .project.card {
+        cursor: pointer;
+      }
+
+      .project.card:focus-visible {
+        outline: 2px solid var(--k-blue-1);
+        outline-offset: 3px;
+      }
+
+      /* ============================================================
+         DESKTOP SCROLL OVERRIDE
+         layout.css locks html/body overflow:hidden for the original
+         single-screen 3-card homepage. With 6 cards in 2 rows the
+         page must scroll. Same pattern used on about and resume pages.
+         Safe because this <style> block only loads on index.html.
+      ============================================================ */
+      @media (min-width: 901px) {
+        html {
+          overflow-y: auto !important;
+          height: auto !important;
+        }
+
+        body.page-home {
+          overflow-y: auto !important;
+          height: auto !important;
+        }
+
+        body.page-home main {
+          height: auto !important;
+          overflow: visible !important;
+          display: block !important;
+          padding-bottom: calc(var(--footer-h) + 24px);
+        }
+
+        body.page-home .home-panels {
+          flex: unset !important;
+          min-height: unset !important;
+          overflow: visible !important;
+        }
+
+        body.page-home .home-panels-inner {
+          height: auto !important;
+          display: block !important;
+        }
+
+        body.page-home .projects-grid {
+          flex: unset !important;
+          min-height: unset !important;
+          align-items: start !important;
+        }
+
+        body.page-home .project.card {
+          height: auto !important;
+          align-self: start !important;
+        }
+      }
+    </style>
   </head>
 
   <body class="page-home">
-    <!-- ============================================================
-       # ---- Header + Navigation Bar (Required) ----
-       Requirements:
-       - Uses <nav>, <ul>, <li>, <a>
-       - Includes at least 4 links: Home, About, Projects, Contact
-       ============================================================ -->
-
     <header class="site-header" role="banner">
       <nav class="container header-inner" aria-label="Primary Navigation">
         <div class="brand">
@@ -60,13 +310,10 @@
         </div>
 
         <ul class="navlinks">
-          <li><a href="index.html">Home</a></li>
-          <li><a href="projects.html">Projects</a></li>
+          <li><a href="index.html" aria-current="page">Home</a></li>
           <li><a href="about.html">About</a></li>
           <li><a href="contact.html">Contact</a></li>
-
           <li class="nav-divider" aria-hidden="true"></li>
-
           <li>
             <a class="navlink--resume" href="resume.html"
               >Engineering Profile</a
@@ -76,44 +323,50 @@
       </nav>
     </header>
 
-    <!-- ============================================================
-       # ---- Main Content ----
-       ============================================================ -->
     <main>
-      <!-- ============================================================
-         # ---- Hero Section (Required) ----
-         ============================================================ -->
+      <!-- Hero -->
       <section class="hero" aria-label="Introduction">
         <div class="container hero-inner">
           <div class="hero-text">
             <h1 class="hero-title">
               Engineering the Full Data Lifecycle — From Ingestion to Decision
             </h1>
-
             <p class="hero-subtitle">
               Building production-grade data pipelines, analytical platforms,
               and decision infrastructure.
             </p>
           </div>
-
           <div class="hero-visual" aria-label="Logo">
             <img
               class="hero-logo"
               src="assets/images/kml_logo.png"
-              alt="Kathy Matos logo"
+              alt="Kathy Matos Linares logo"
             />
           </div>
         </div>
       </section>
 
-      <!-- ============================================================
-         # ---- Flagship Systems (No Tabs/Pills) ----
-         ============================================================ -->
-      <section class="home-panels" aria-label="Homepage Panels">
+      <!-- Projects -->
+      <section class="home-panels" aria-label="Projects">
         <div class="container home-panels-inner">
+          <div class="projects-heading">
+            <h2>Projects</h2>
+            <p>Click any project to see details, code, and live links.</p>
+          </div>
+
           <div class="projects-grid">
-            <!-- Card 1 -->
-            <article class="project card">
+            <!-- Card 1: REST API -->
+            <article
+              class="project card"
+              role="button"
+              tabindex="0"
+              aria-label="View Secure Production REST API details"
+              onclick="openModal('api')"
+              onkeydown="
+                if (event.key === 'Enter' || event.key === ' ')
+                  openModal('api');
+              "
+            >
               <div class="project-head">
                 <div class="project-icon" aria-hidden="true">
                   <svg viewBox="0 0 24 24">
@@ -125,33 +378,38 @@
                     <circle cx="7" cy="18" r="1"></circle>
                   </svg>
                 </div>
-
                 <h3 class="project-title">Secure Production REST API</h3>
               </div>
-
               <p class="project-identity">
                 Authenticated service for reliable data access and workflow
                 automation.
               </p>
-
               <ul class="project-highlights">
                 <li>JWT auth + request validation</li>
                 <li>Rate limiting + caching</li>
                 <li>PostgreSQL schema + migrations</li>
               </ul>
-
               <ul class="project-tags" aria-label="Tech stack">
                 <li class="tag">Python</li>
                 <li class="tag">FastAPI</li>
                 <li class="tag">PostgreSQL</li>
                 <li class="tag">Docker</li>
               </ul>
-
-              <a class="project-cta" href="projects.html">View Project →</a>
+              <span class="project-cta">View Project →</span>
             </article>
 
-            <!-- Card 2 -->
-            <article class="project card">
+            <!-- Card 2: Macro Dashboard -->
+            <article
+              class="project card"
+              role="button"
+              tabindex="0"
+              aria-label="View Macro Regime Intelligence Platform details"
+              onclick="openModal('macro')"
+              onkeydown="
+                if (event.key === 'Enter' || event.key === ' ')
+                  openModal('macro');
+              "
+            >
               <div class="project-head">
                 <div class="project-icon" aria-hidden="true">
                   <svg viewBox="0 0 24 24">
@@ -160,34 +418,39 @@
                     <path d="M7 15l3-3 3 2 4-6"></path>
                   </svg>
                 </div>
-
                 <h3 class="project-title">
                   Macro Regime Intelligence Platform
                 </h3>
               </div>
-
               <p class="project-identity">
                 Daily macro cockpit with regime context and board-pack export.
               </p>
-
               <ul class="project-highlights">
-                <li>FRED/OECD ingestion + “as-of” alignment</li>
+                <li>FRED/OECD ingestion + "as-of" alignment</li>
                 <li>Mixed frequency normalization</li>
                 <li>Regime labels with start/end dates</li>
               </ul>
-
               <ul class="project-tags" aria-label="Tech stack">
                 <li class="tag">R</li>
                 <li class="tag">Shiny</li>
                 <li class="tag">Quarto</li>
                 <li class="tag">FRED/OECD</li>
               </ul>
-
-              <a class="project-cta" href="projects.html">View Project →</a>
+              <span class="project-cta">View Project →</span>
             </article>
 
-            <!-- Card 3 -->
-            <article class="project card">
+            <!-- Card 3: Signal Pipeline -->
+            <article
+              class="project card"
+              role="button"
+              tabindex="0"
+              aria-label="View News Signal Pipeline details"
+              onclick="openModal('signal')"
+              onkeydown="
+                if (event.key === 'Enter' || event.key === ' ')
+                  openModal('signal');
+              "
+            >
               <div class="project-head">
                 <div class="project-icon" aria-hidden="true">
                   <svg viewBox="0 0 24 24">
@@ -197,31 +460,148 @@
                     <path d="M9 15h6"></path>
                   </svg>
                 </div>
-
-                <h3 class="project-title">
-                  News → Structured Signal Pipeline (MVP)
-                </h3>
+                <h3 class="project-title">News → Structured Signal Pipeline</h3>
               </div>
-
               <p class="project-identity">
                 Transforms news into tagged signals and decision-ready daily
                 summaries.
               </p>
-
               <ul class="project-highlights">
                 <li>Entity/theme tagging + confidence</li>
                 <li>Structured outputs for search + reuse</li>
                 <li>Daily automation + archive</li>
               </ul>
-
               <ul class="project-tags" aria-label="Tech stack">
                 <li class="tag">Python</li>
                 <li class="tag">ETL</li>
                 <li class="tag">LLM Assist</li>
                 <li class="tag">Scheduling</li>
               </ul>
+              <span class="project-cta">View Project →</span>
+            </article>
 
-              <a class="project-cta" href="projects.html">View Project →</a>
+            <!-- Card 4: GeoRev -->
+            <article
+              class="project card"
+              role="button"
+              tabindex="0"
+              aria-label="View GeoRev Risk Engine details"
+              onclick="openModal('georev')"
+              onkeydown="
+                if (event.key === 'Enter' || event.key === ' ')
+                  openModal('georev');
+              "
+            >
+              <div class="project-head">
+                <div class="project-icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24">
+                    <path d="M3 12h18"></path>
+                    <path d="M12 3v18"></path>
+                    <path d="M7 7h10v10H7z"></path>
+                  </svg>
+                </div>
+                <h3 class="project-title">
+                  GeoRev Revenue-by-Region Risk Engine
+                </h3>
+              </div>
+              <p class="project-identity">
+                Maps company revenue exposure to regions and stress overlays.
+              </p>
+              <ul class="project-highlights">
+                <li>GeoRev + custom region mapping</li>
+                <li>Risk overlays (macro/political/climate)</li>
+                <li>Decision-ready rollups + flags</li>
+              </ul>
+              <ul class="project-tags" aria-label="Tech stack">
+                <li class="tag">Python</li>
+                <li class="tag">Data modeling</li>
+                <li class="tag">APIs</li>
+                <li class="tag">Dashboards</li>
+              </ul>
+              <span class="project-cta">View Project →</span>
+            </article>
+
+            <!-- Card 5: ESG -->
+            <article
+              class="project card"
+              role="button"
+              tabindex="0"
+              aria-label="View Behavioral Map ESG Pipeline details"
+              onclick="openModal('esg')"
+              onkeydown="
+                if (event.key === 'Enter' || event.key === ' ')
+                  openModal('esg');
+              "
+            >
+              <div class="project-head">
+                <div class="project-icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24">
+                    <path d="M6 20V10"></path>
+                    <path d="M12 20V4"></path>
+                    <path d="M18 20v-8"></path>
+                  </svg>
+                </div>
+                <h3 class="project-title">Behavioral Map + ESG Pipeline</h3>
+              </div>
+              <p class="project-identity">
+                Classifies stocks into behavioral regimes using
+                percentile-scored factors.
+              </p>
+              <ul class="project-highlights">
+                <li>Sector-aware quality filters</li>
+                <li>Behavioral subcategory mapping</li>
+                <li>Breakdown tables + summary charts</li>
+              </ul>
+              <ul class="project-tags" aria-label="Tech stack">
+                <li class="tag">R</li>
+                <li class="tag">data.table</li>
+                <li class="tag">gt</li>
+                <li class="tag">Quarto</li>
+              </ul>
+              <span class="project-cta">View Project →</span>
+            </article>
+
+            <!-- Card 6: Deterioration Dashboard -->
+            <article
+              class="project card"
+              role="button"
+              tabindex="0"
+              aria-label="View Fundamental Deterioration Dashboard details"
+              onclick="openModal('deterioration')"
+              onkeydown="
+                if (event.key === 'Enter' || event.key === ' ')
+                  openModal('deterioration');
+              "
+            >
+              <div class="project-head">
+                <div class="project-icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24">
+                    <path d="M4 4h16v16H4z"></path>
+                    <path d="M8 8h8"></path>
+                    <path d="M8 12h8"></path>
+                    <path d="M8 16h6"></path>
+                  </svg>
+                </div>
+                <h3 class="project-title">
+                  Fundamental Deterioration Dashboard
+                </h3>
+              </div>
+              <p class="project-identity">
+                Multi-module monitoring for revisions, valuation, quality, and
+                signal drift.
+              </p>
+              <ul class="project-highlights">
+                <li>6-panel factor view + commentary</li>
+                <li>Peer comparisons + time trends</li>
+                <li>Audit-friendly outputs</li>
+              </ul>
+              <ul class="project-tags" aria-label="Tech stack">
+                <li class="tag">R</li>
+                <li class="tag">Shiny</li>
+                <li class="tag">Quarto</li>
+                <li class="tag">Visualization</li>
+              </ul>
+              <span class="project-cta">View Project →</span>
             </article>
           </div>
         </div>
@@ -229,28 +609,46 @@
     </main>
 
     <!-- ============================================================
-     # ---- Footer (Required)
-     FIXED STRUCTURE:
-     footer.site-footer
-       > .container
-         > .footer-inner (flex row wrapper)
-           > .footer-left
-           > .footer-right
-     ============================================================ -->
+         MODAL OVERLAY
+         One modal, content swapped by JS per project.
+         To add real links later: update the githubUrl and appUrl
+         values in the projects object in the <script> below.
+    ============================================================ -->
+    <div
+      class="modal-overlay"
+      id="modalOverlay"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="modalTitle"
+      onclick="handleOverlayClick(event)"
+    >
+      <div class="modal" id="modal">
+        <div class="modal-img-placeholder" id="modalImgWrap">
+          <span>Screenshot coming soon</span>
+        </div>
+        <div class="modal-body">
+          <h2 class="modal-title" id="modalTitle"></h2>
+          <p class="modal-stack" id="modalStack"></p>
+          <p class="modal-desc" id="modalDesc"></p>
+          <ul class="modal-highlights" id="modalHighlights"></ul>
+          <div class="modal-actions" id="modalActions"></div>
+          <button class="modal-close" onclick="closeModal()">Close</button>
+        </div>
+      </div>
+    </div>
+
     <footer class="site-footer">
       <div class="container">
         <div class="footer-inner">
           <div class="footer-left">
             <p>© 2026 Kathy Matos Linares. All rights reserved.</p>
           </div>
-
           <div class="footer-right">
             <nav class="footer-legal" aria-label="Legal">
               <a class="footer-link" href="privacy.html">Privacy Policy</a>
               <span class="footer-dot" aria-hidden="true">•</span>
               <a class="footer-link" href="terms.html">Terms of Use</a>
             </nav>
-
             <a
               href="mailto:kmatosli@yahoo.com"
               class="email-link"
@@ -272,7 +670,6 @@
               </svg>
               <span>kmatosli@yahoo.com</span>
             </a>
-
             <a
               href="https://github.com/kmatosli"
               target="_blank"
@@ -288,21 +685,10 @@
                 aria-hidden="true"
               >
                 <path
-                  d="M12 2C6.477 2 2 6.596 2 12.253c0 4.524 2.865 8.363 6.839 9.717
-              .5.094.682-.22.682-.485 0-.24-.008-.874-.013-1.714-2.781.62-3.369-1.372-3.369-1.372
-              -.454-1.18-1.11-1.494-1.11-1.494-.907-.636.069-.623.069-.623
-              1.003.072 1.53 1.055 1.53 1.055.893 1.564 2.344 1.113 2.915.85
-              .09-.664.35-1.113.636-1.37-2.221-.26-4.555-1.138-4.555-5.063
-              0-1.118.39-2.032 1.029-2.748-.104-.262-.446-1.316.098-2.742
-              0 0 .84-.275 2.75 1.05a9.19 9.19 0 0 1 2.504-.35c.85.004 1.706.12 2.504.35
-              1.91-1.325 2.748-1.05 2.748-1.05.545 1.426.203 2.48.1 2.742
-              .64.716 1.028 1.63 1.028 2.748 0 3.934-2.338 4.8-4.566 5.055
-              .36.322.681.955.681 1.927 0 1.39-.012 2.512-.012 2.854
-              0 .268.18.584.688.485A10.27 10.27 0 0 0 22 12.253C22 6.596 17.523 2 12 2z"
+                  d="M12 2C6.477 2 2 6.596 2 12.253c0 4.524 2.865 8.363 6.839 9.717.5.094.682-.22.682-.485 0-.24-.008-.874-.013-1.714-2.781.62-3.369-1.372-3.369-1.372-.454-1.18-1.11-1.494-1.11-1.494-.907-.636.069-.623.069-.623 1.003.072 1.53 1.055 1.53 1.055.893 1.564 2.344 1.113 2.915.85.09-.664.35-1.113.636-1.37-2.221-.26-4.555-1.138-4.555-5.063 0-1.118.39-2.032 1.029-2.748-.104-.262-.446-1.316.098-2.742 0 0 .84-.275 2.75 1.05a9.19 9.19 0 0 1 2.504-.35c.85.004 1.706.12 2.504.35 1.91-1.325 2.748-1.05 2.748-1.05.545 1.426.203 2.48.1 2.742.64.716 1.028 1.63 1.028 2.748 0 3.934-2.338 4.8-4.566 5.055.36.322.681.955.681 1.927 0 1.39-.012 2.512-.012 2.854 0 .268.18.584.688.485A10.27 10.27 0 0 0 22 12.253C22 6.596 17.523 2 12 2z"
                 ></path>
               </svg>
             </a>
-
             <a
               href="https://www.linkedin.com/in/kathy-matos-070802/"
               target="_blank"
@@ -318,13 +704,7 @@
                 aria-hidden="true"
               >
                 <path
-                  d="M20.447 20.452H17.1v-5.569c0-1.328-.027-3.037-1.852-3.037
-              -1.853 0-2.136 1.445-2.136 2.939v5.667H9.655V9h3.214v1.561h.046
-              c.477-.9 1.637-1.85 3.37-1.85 3.401 0 4.167 2.37 4.167 5.455v6.286zM5.337 7.433
-              c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063
-              1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zM6.956 20.452H3.717V9h3.239v11.452zM22.225 0H1.771
-              C.792 0 0 .774 0 1.727v20.545C0 23.227.792 24 1.771 24h20.451
-              C23.2 24 24 23.227 24 22.273V1.727C24 .774 23.2 0 22.222 0h.003z"
+                  d="M20.447 20.452H17.1v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.655V9h3.214v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.401 0 4.167 2.37 4.167 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zM6.956 20.452H3.717V9h3.239v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.727v20.545C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.273V1.727C24 .774 23.2 0 22.222 0h.003z"
                 ></path>
               </svg>
             </a>
@@ -332,5 +712,157 @@
         </div>
       </div>
     </footer>
+
+    <script>
+      // ============================================================
+      // PROJECT DATA
+      // To add real links: replace the '#' values with your URLs.
+      // To add a screenshot: replace the imgSrc null with a path
+      //   e.g. imgSrc: 'assets/images/api-screenshot.png'
+      // ============================================================
+      const projects = {
+        api: {
+          title: "Secure Production REST API",
+          stack: "Python · FastAPI · PostgreSQL · Docker · JWT",
+          desc: "An authenticated REST service built for reliable data access and workflow automation. Designed with production constraints in mind — rate limiting, request validation, and structured error handling keep the service stable under load.",
+          highlights: [
+            "JWT authentication + request validation on all endpoints",
+            "Rate limiting + response caching for performance",
+            "PostgreSQL schema with migrations for reproducible deployments",
+            "Containerized with Docker for consistent local and cloud environments",
+          ],
+          githubUrl: "#",
+          appUrl: null,
+          imgSrc: null,
+        },
+        macro: {
+          title: "Macro Regime Intelligence Platform",
+          stack: "R · Shiny · Quarto · FRED API · OECD API",
+          desc: "A daily macro cockpit that ingests economic data from FRED and OECD, normalizes across mixed frequencies, and classifies the current macro regime. Built for investment decision-making — outputs include regime labels with start/end dates and board-pack exports.",
+          highlights: [
+            'FRED + OECD ingestion with "as-of" date alignment',
+            "Mixed-frequency normalization across indicators",
+            "Regime classification with labeled start/end periods",
+            "Board-pack export for investment review meetings",
+          ],
+          githubUrl: "#",
+          appUrl: null,
+          imgSrc: null,
+        },
+        signal: {
+          title: "News → Structured Signal Pipeline",
+          stack: "Python · ETL · LLM-assisted tagging · Scheduling",
+          desc: "An automated pipeline that transforms raw news into structured, tagged signals. Entity and theme extraction with confidence scoring produces outputs that are searchable, reusable, and decision-ready — delivered on a daily schedule with a full archive.",
+          highlights: [
+            "Entity + theme tagging with confidence scores",
+            "Structured outputs designed for search and downstream reuse",
+            "Daily automation with archive for historical review",
+            "LLM-assisted classification for consistent signal quality",
+          ],
+          githubUrl: "#",
+          appUrl: null,
+          imgSrc: null,
+        },
+        georev: {
+          title: "GeoRev Revenue-by-Region Risk Engine",
+          stack: "Python · Data modeling · APIs · Dashboards",
+          desc: "Maps company revenue exposure to geographic regions and overlays macro, political, and climate risk signals. Produces decision-ready rollups and flags for portfolio risk review.",
+          highlights: [
+            "GeoRev data integration with custom region mapping",
+            "Risk overlays: macro, political, and climate signals",
+            "Decision-ready rollups with risk flags",
+            "Dashboard output for portfolio review workflows",
+          ],
+          githubUrl: "#",
+          appUrl: null,
+          imgSrc: null,
+        },
+        esg: {
+          title: "Behavioral Map + ESG Pipeline",
+          stack: "R · data.table · gt · Quarto",
+          desc: "Classifies equities into behavioral regimes using sector-aware, percentile-scored quality and ESG factors. Outputs breakdown tables, summary charts, and audit-ready Quarto reports.",
+          highlights: [
+            "Sector-aware percentile scoring for quality and ESG factors",
+            "Behavioral subcategory mapping across the equity universe",
+            "Breakdown tables + summary charts via gt and ggplot2",
+            "Audit-friendly Quarto report output",
+          ],
+          githubUrl: "#",
+          appUrl: null,
+          imgSrc: null,
+        },
+        deterioration: {
+          title: "Fundamental Deterioration Dashboard",
+          stack: "R · Shiny · Quarto · Visualization",
+          desc: "A multi-module monitoring system for tracking fundamental deterioration signals across revisions, valuation, quality, and factor drift. Designed for daily investment workflow use with peer comparisons and time-trend views.",
+          highlights: [
+            "6-panel factor view with inline commentary",
+            "Peer comparisons + time-trend analysis",
+            "Revision tracking + valuation and quality monitoring",
+            "Audit-friendly outputs for investment review",
+          ],
+          githubUrl: "#",
+          appUrl: null,
+          imgSrc: null,
+        },
+      };
+
+      // ============================================================
+      // MODAL LOGIC
+      // ============================================================
+      function openModal(id) {
+        const p = projects[id];
+        if (!p) return;
+
+        // Image or placeholder
+        const imgWrap = document.getElementById("modalImgWrap");
+        if (p.imgSrc) {
+          imgWrap.innerHTML = `<img class="modal-img" src="${p.imgSrc}" alt="${p.title} screenshot" />`;
+        } else {
+          imgWrap.innerHTML = `<div class="modal-img-placeholder"><span>Screenshot coming soon</span></div>`;
+        }
+
+        document.getElementById("modalTitle").textContent = p.title;
+        document.getElementById("modalStack").textContent = p.stack;
+        document.getElementById("modalDesc").textContent = p.desc;
+
+        // Highlights
+        const ul = document.getElementById("modalHighlights");
+        ul.innerHTML = p.highlights.map((h) => `<li>${h}</li>`).join("");
+
+        // Action buttons
+        const actions = document.getElementById("modalActions");
+        const githubBtn =
+          p.githubUrl && p.githubUrl !== "#"
+            ? `<a class="modal-btn modal-btn--github" href="${p.githubUrl}" target="_blank" rel="noreferrer">GitHub →</a>`
+            : `<span class="modal-btn modal-btn--disabled">GitHub — coming soon</span>`;
+        const appBtn = p.appUrl
+          ? `<a class="modal-btn modal-btn--app" href="${p.appUrl}" target="_blank" rel="noreferrer">Live App →</a>`
+          : `<span class="modal-btn modal-btn--disabled">Live App — coming soon</span>`;
+        actions.innerHTML = githubBtn + appBtn;
+
+        // Open
+        const overlay = document.getElementById("modalOverlay");
+        overlay.classList.add("is-open");
+        document.body.style.overflow = "hidden";
+
+        // Focus trap — focus close button
+        overlay.querySelector(".modal-close").focus();
+      }
+
+      function closeModal() {
+        document.getElementById("modalOverlay").classList.remove("is-open");
+        document.body.style.overflow = "";
+      }
+
+      function handleOverlayClick(e) {
+        if (e.target === document.getElementById("modalOverlay")) closeModal();
+      }
+
+      // Close on Escape key
+      document.addEventListener("keydown", function (e) {
+        if (e.key === "Escape") closeModal();
+      });
+    </script>
   </body>
 </html>
